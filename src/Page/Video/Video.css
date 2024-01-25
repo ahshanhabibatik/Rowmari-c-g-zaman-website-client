@@ -1,0 +1,20 @@
+.image-container {
+    background-image: url("https://i.ibb.co/R6Q8yvR/in-media-Bg1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    height: 200px;
+
+
+}
+
+.image-container2 {
+    background-image: url("https://i.ibb.co/8XP6Rds/in-media-Bg2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    height: 350px;
+
+}

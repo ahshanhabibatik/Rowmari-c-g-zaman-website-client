@@ -1,0 +1,21 @@
+.marquee-container {
+    height: 230px;
+    /* Adjust the height as needed */
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee {
+    position: absolute;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        top: 100%;
+    }
+
+    100% {
+        top: -100%;
+    }
+}
