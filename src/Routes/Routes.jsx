@@ -17,6 +17,10 @@ import Video from "../Page/Video/Video";
 import DashBoard from "../DashBoardControl/Dashboard";
 import AdminHome from "../DashBoardControl/AdminRouter/AdminHome";
 import TeacherHome from "../DashBoardControl/TeacherRoute/TeacherHome";
+import AllUsers from "../DashBoardControl/AdminRouter/AllUsers";
+import AddStudentInfo from "../AdminPanel/AddStudentInfo";
+import StudentInfo from "../AdminPanel/StudentInfo";
+import UpdateStudentInfo from "../AdminPanel/UpdateStudentInfo";
 
 
 
@@ -73,6 +77,22 @@ const router = createBrowserRouter([
             {
                 path: 'home',
                 element: <AdminHome></AdminHome>
+            },
+            {
+                path: 'users',
+                element: <AllUsers></AllUsers>
+            },
+            {
+                path: 'studentInfo',
+                element: <AddStudentInfo></AddStudentInfo>
+            },
+            {
+                path: 'stuInfo',
+                element: <StudentInfo></StudentInfo>
+            },
+            {
+                path: 'stuInfo/update/:id',
+                element: <UpdateStudentInfo></UpdateStudentInfo>
             },
 
             // TeacherDashboard

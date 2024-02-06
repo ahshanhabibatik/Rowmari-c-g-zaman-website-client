@@ -9,9 +9,9 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
         open={isOpen}
         onClose={onClose}
         direction='left'
-        className='bg-orange-300 w-64'
+        className=' w-64 '
     >
-        <ul className="menu">
+        <ul className="menu bg-[#74189c] h-full text-white ">
             <li>
                 {isAdmin && (
                     <>
@@ -21,8 +21,11 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         <NavLink to={'/dashboard/users'}>
                             <FaHome /> All User
                         </NavLink>
-                        <NavLink to={'/dashboard/surveyorRequest'}>
+                        <NavLink to={'/dashboard/stuInfo'}>
                             <FaHome /> Student Info
+                        </NavLink>
+                        <NavLink to={'/dashboard/studentInfo'}>
+                            <FaHome />Add Student Info
                         </NavLink>
                         <NavLink to={'/dashboard/surveyResponse'}>
                             <FaHome /> Result
@@ -30,6 +33,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         <NavLink to={'/dashboard/paymentHistory'}>
                             <FaHome /> News
                         </NavLink>
+                         
                     </>
                 )}
                 {isTeacher && (
