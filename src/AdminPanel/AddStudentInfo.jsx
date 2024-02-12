@@ -96,7 +96,13 @@ const AddStudentInfo = () => {
                                 </select>
                                 {errors.bloodGroup && <span className="text-red-600">Blood group is required</span>}
                             </div>
-
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Date of Barth</span>
+                                </label>
+                                <input type="date" {...register("dateOfBirth", { required: true })} name="dateOfBirth" className="input input-bordered" />
+                                {errors.dateOfBirth && <span className="text-red-600">Date of birth is required</span>}
+                            </div>
                         </div>
                         {/* part-2 */}
                         <div>
@@ -166,16 +172,20 @@ const AddStudentInfo = () => {
                                 </select>
                                 {errors.bloodGroup && <span className="text-red-600">Class is required</span>}
                             </div>
+
+                            <div className="form-control mx-auto">
+                                <label className="label">
+                                    <span className="label-text">Address</span>
+                                </label>
+                                <input type="text"  {...register("address", { required: true })} placeholder="Enter your Address" className="input input-bordered" />
+                                {errors.photoURL && <span className="text-red-600"> Address is required</span>}
+                            </div>
                         </div>
 
+
+
                     </div>
-                    <div className="form-control w-[470px] mx-auto">
-                        <label className="label">
-                            <span className="label-text">Address</span>
-                        </label>
-                        <input type="text"  {...register("address", { required: true })} placeholder="Enter your Address" className="input input-bordered" />
-                        {errors.photoURL && <span className="text-red-600"> Address is required</span>}
-                    </div>
+
                     <div className="form-control mt-6">
                         <input className="btn btn-primary" type="submit" value="Add Information" />
                     </div>

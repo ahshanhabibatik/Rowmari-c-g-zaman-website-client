@@ -21,6 +21,7 @@ import AllUsers from "../DashBoardControl/AdminRouter/AllUsers";
 import AddStudentInfo from "../AdminPanel/AddStudentInfo";
 import StudentInfo from "../AdminPanel/StudentInfo";
 import UpdateStudentInfo from "../AdminPanel/UpdateStudentInfo";
+import AddResult from "../TeacherPanel/AddResult";
 
 
 
@@ -92,14 +93,19 @@ const router = createBrowserRouter([
             },
             {
                 path: 'stuInfo/update/:id',
-                element: <UpdateStudentInfo></UpdateStudentInfo>
+                element: <UpdateStudentInfo />,
+                loader: ({ params }) => fetch(`http://localhost:5001/students/${params.id}`)
             },
 
             // TeacherDashboard
             {
                 path: "teacherHome",
                 element: <TeacherHome></TeacherHome>
-            }
+            },
+            {
+                path: "addResult",
+                element: <AddResult></AddResult>
+            },
 
         ]
     }

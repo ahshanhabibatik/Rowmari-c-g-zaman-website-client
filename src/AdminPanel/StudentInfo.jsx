@@ -83,6 +83,7 @@ const StudentInfo = () => {
                         <th className="border">Section</th>
                         <th className="border">Roll</th>
                         <th className="border">Gender</th>
+                        <th className="border">DOB</th>
                         <th className="border">Email</th>
                         <th className="border">Phone</th>
                         <th className="border">Address</th>
@@ -90,15 +91,16 @@ const StudentInfo = () => {
 
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="text-center">
                     {filteredStudents.map((student, index) => (
-                        <tr key={student._id}>
-                            <th className='border text-center'>{index + 1}</th>
+                        <tr  key={student._id}>
+                            <th className='border'>{index + 1}</th>
                             <td className="border">{student.name}</td>
                             <td className="border">{student.class}</td>
                             <td className="border">{student.section}</td>
                             <td className="border">{student.roll}</td>
                             <td className="border">{student.gender}</td>
+                            <td className="border">{student.dateOfBirth}</td>
                             <td className="border">{student.email}</td>
                             <td className="border">{student.number}</td>
                             <td className="border">{student.address}</td>
