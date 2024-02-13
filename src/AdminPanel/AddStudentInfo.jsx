@@ -51,12 +51,27 @@ const AddStudentInfo = () => {
                                 <input type="text"  {...register("name", { required: true })} name="name" placeholder="Name" className="input input-bordered" />
                                 {errors.name && <span className="text-red-600">Name is required</span>}
                             </div>
+
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Father Name</span>
+                                </label>
+                                <input type="text"  {...register("fName", { required: true })} name="fName" placeholder="Enter Father Name" className="input input-bordered" />
+                                {errors.fName && <span className="text-red-600">Name is required</span>}
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Mother Name</span>
+                                </label>
+                                <input type="text"  {...register("mName", { required: true })} name="mName" placeholder="Enter Mother Name" className="input input-bordered" />
+                                {errors.mName && <span className="text-red-600">Name is required</span>}
+                            </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Class Roll</span>
                                 </label>
                                 <input type="number"  {...register("roll", { required: true })} name="roll" placeholder="Enter Class Roll" className="input input-bordered" />
-                                {errors.email && <span className="text-red-600">Roll is required</span>}
+                                {errors.roll && <span className="text-red-600">Roll is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -68,14 +83,13 @@ const AddStudentInfo = () => {
                                     <option value="female">Female</option>
                                     <option value="others">Others</option>
                                 </select>
-                                {errors.bloodGroup && <span className="text-red-600">Gender is required</span>}
+                                {errors.gender && <span className="text-red-600">Gender is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
                                 <input type="email"  {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
-                                {errors.email && <span className="text-red-600">Email is required</span>}
                             </div>
 
                             <div className="form-control">
@@ -96,6 +110,11 @@ const AddStudentInfo = () => {
                                 </select>
                                 {errors.bloodGroup && <span className="text-red-600">Blood group is required</span>}
                             </div>
+
+                        </div>
+                        {/* part-2 */}
+                        <div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Date of Barth</span>
@@ -103,9 +122,7 @@ const AddStudentInfo = () => {
                                 <input type="date" {...register("dateOfBirth", { required: true })} name="dateOfBirth" className="input input-bordered" />
                                 {errors.dateOfBirth && <span className="text-red-600">Date of birth is required</span>}
                             </div>
-                        </div>
-                        {/* part-2 */}
-                        <div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Class</span>
@@ -158,8 +175,8 @@ const AddStudentInfo = () => {
                                     <span className="label-text">Photo URL</span>
                                 </label>
                                 <input type="text"  {...register("photoURL", { required: true })} placeholder="Enter your photo URL" className="input input-bordered" />
-
                             </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Select Shift</span>
