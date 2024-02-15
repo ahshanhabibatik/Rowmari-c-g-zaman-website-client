@@ -22,6 +22,9 @@ import AddStudentInfo from "../AdminPanel/AddStudentInfo";
 import StudentInfo from "../AdminPanel/StudentInfo";
 import UpdateStudentInfo from "../AdminPanel/UpdateStudentInfo";
 import AddResult from "../TeacherPanel/AddResult";
+import AdminNews from "../AdminPanel/AdminNews";
+import ShowNews from "../AdminPanel/ShowNews";
+import UpdateNotice from "../AdminPanel/UpdateNotice";
 
 
 
@@ -95,6 +98,19 @@ const router = createBrowserRouter([
                 path: 'stuInfo/update/:id',
                 element: <UpdateStudentInfo />,
                 loader: ({ params }) => fetch(`http://localhost:5001/students/${params.id}`)
+            },
+            {
+                path: 'showNews',
+                element: <ShowNews></ShowNews>
+            },
+            {
+                path: 'adNews',
+                element: <AdminNews></AdminNews>
+            },
+            {
+                path: 'showNews/updateNews/:id',
+                element: <UpdateNotice></UpdateNotice>,
+                loader: ({ params }) => fetch(`http://localhost:5001/news/${params.id}`)
             },
 
             // TeacherDashboard

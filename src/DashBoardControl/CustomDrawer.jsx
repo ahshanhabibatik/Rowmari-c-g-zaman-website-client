@@ -27,13 +27,16 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         <NavLink to={'/dashboard/studentInfo'}>
                             <FaHome />Add Student Info
                         </NavLink>
-                        <NavLink to={'/dashboard/surveyResponse'}>
+                        <NavLink to={'/dashboard/result'}>
                             <FaHome /> Result
                         </NavLink>
-                        <NavLink to={'/dashboard/paymentHistory'}>
+                        <NavLink to={'/dashboard/showNews'}>
                             <FaHome /> News
                         </NavLink>
-                         
+                        <NavLink to={'/dashboard/adNews'}>
+                            <FaHome /> Upload News
+                        </NavLink>
+
                     </>
                 )}
                 {isTeacher && (

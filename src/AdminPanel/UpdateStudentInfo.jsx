@@ -51,15 +51,15 @@ const UpdateStudentInfo = () => {
                                 <label className="label">
                                     <span className="label-text">Father Name</span>
                                 </label>
-                                <input type="text"  {...register("fName", { required: true })} name="fName" placeholder="Enter Father Name" className="input input-bordered" />
-                                {errors.fName && <span className="text-red-600">Name is required</span>}
+                                <input defaultValue={data.fName} type="text"  {...register("fName", { required: true })} name="fName" placeholder="Enter Father Name" className="input input-bordered" />
+                                
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Mother Name</span>
                                 </label>
-                                <input type="text"  {...register("mName", { required: true })} name="mName" placeholder="Enter Mother Name" className="input input-bordered" />
-                                {errors.mName && <span className="text-red-600">Name is required</span>}
+                                <input defaultValue={data.mName} type="text"  {...register("mName", { required: true })} name="mName" placeholder="Enter Mother Name" className="input input-bordered" />
+                                
                             </div>
 
                             <div className="form-control">

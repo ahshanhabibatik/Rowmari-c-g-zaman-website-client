@@ -12,63 +12,73 @@ const AddResult = () => {
     const [totalMarks, setTotalMarks] = useState(0);
     const [totalSubjects, setTotalSubjects] = useState(0);
     const [subjectGradePoints, setSubjectGradePoints] = useState({});
+    const [subjectGradeLetters, setSubjectGradeLetters] = useState({}); // Add state for subject grade letters
     const [averageGradePoint, setAverageGradePoint] = useState(0);
     const [totalGrade, setTotalGrade] = useState('');
     const [gpa, setGpa] = useState(0);
+
+    const [selectedClass, setSelectedClass] = useState('');
+    const [selectedRoll, setSelectedRoll] = useState('');
+    const [selectedSection, setSelectedSection] = useState('');
 
     const handleSubjectChange = (subject) => {
         setSelectedSubject(subject);
     };
 
-    useEffect(() => {
-        // Fetch all students data from the API
-        const fetchStudents = async () => {
-            try {
-                const res = await axiosSecure.get('/students');
-                setStudents(res.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchStudents();
-    }, [axiosSecure]);
-
-    // Function to calculate grade and grade point based on marks
+    // Function to calculate grade, grade point, and grade letter based on marks
     const calculateGradeAndPoint = (marks) => {
         let grade = '';
         let gradePoint = 0;
+        let gradeLetter = '';
 
         if (marks >= 80) {
             grade = 'A+';
             gradePoint = 5.00;
+            gradeLetter = 'A+';
         } else if (marks >= 70) {
             grade = 'A';
             gradePoint = 4.00;
+            gradeLetter = 'A';
         } else if (marks >= 60) {
             grade = 'A-';
             gradePoint = 3.50;
+            gradeLetter = 'A-';
         } else if (marks >= 50) {
             grade = 'B';
             gradePoint = 3.00;
+            gradeLetter = 'B';
         } else if (marks >= 40) {
             grade = 'C';
             gradePoint = 2.00;
+            gradeLetter = 'C';
         } else if (marks >= 33) {
             grade = 'D';
             gradePoint = 1.00;
+            gradeLetter = 'D';
         } else {
             grade = 'F';
             gradePoint = 0.00;
+            gradeLetter = 'F';
         }
 
-        return { grade, gradePoint };
+        return { grade, gradePoint, gradeLetter };
     };
 
     const calculateTotalGrade = (totalPoint) => {
         let totalGrade = '';
 
-        if (totalPoint >= 4) {
+        if (totalPoint === 5.00) {
+            totalGrade = 'A+';
+        } else if (totalPoint >= 4.00) {
             totalGrade = 'A';
+        } else if (totalPoint >= 3.50) {
+            totalGrade = 'A-';
+        } else if (totalPoint >= 3.00) {
+            totalGrade = 'B';
+        } else if (totalPoint >= 2.00) {
+            totalGrade = 'C';
+        } else if (totalPoint >= 1.00) {
+            totalGrade = 'D';
         } else {
             totalGrade = 'F';
         }
@@ -77,10 +87,11 @@ const AddResult = () => {
     };
 
     const onSubmit = async (data) => {
-        // Calculate total marks, subject-wise grade points, average grade point, and total grade
+        // Calculate total marks, subject-wise grade points, grade letters, average grade point, and total grade
         let totalMarks = 0;
         let totalSubjects = 0;
         let subjectGradePoints = {};
+        let subjectGradeLetters = {}; // Object to store subject-wise grade letters
         let totalGradePoints = 0;
         const subjects = ['bangla', 'english', 'math', 'history', 'health', 'Life', 'ArtAndCulture', 'Science', 'digital', 'ইসলাম'];
 
@@ -89,8 +100,9 @@ const AddResult = () => {
             if (marks) {
                 totalMarks += marks;
                 totalSubjects++;
-                const { grade, gradePoint } = calculateGradeAndPoint(marks);
+                const { grade, gradePoint, gradeLetter } = calculateGradeAndPoint(marks);
                 subjectGradePoints[subject] = gradePoint;
+                subjectGradeLetters[subject] = gradeLetter; // Store grade letter for each subject
                 totalGradePoints += gradePoint;
             }
         });
@@ -102,6 +114,7 @@ const AddResult = () => {
         setTotalMarks(totalMarks);
         setTotalSubjects(totalSubjects);
         setSubjectGradePoints(subjectGradePoints);
+        setSubjectGradeLetters(subjectGradeLetters); // Update state with subject grade letters
         setAverageGradePoint(totalPoint);
         setTotalGrade(totalGrade);
 
@@ -111,6 +124,7 @@ const AddResult = () => {
                 totalMarks,
                 totalSubjects,
                 subjectGradePoints,
+                subjectGradeLetters, // Pass subject grade letters to the backend
                 averageGradePoint: totalPoint,
                 totalGrade
             });
@@ -138,33 +152,69 @@ const AddResult = () => {
     }, [totalMarks, totalSubjects]);
 
 
+    // search student for class section and roll
 
+     // Function to find a student based on class, roll, and section
+    const findStudent = (students, classValue, roll, section) => {
+        return students.find(student => student.class === classValue && student.roll === roll && student.section === section);
+    };
 
+    // Event handler for class selection
     const handleClassChange = (e) => {
         const selectedClass = e.target.value;
-        // Filter students based on the selected class
-        const filteredStudents = students.filter(student => student.class === selectedClass);
-        setStudents(filteredStudents);
-        // Reset roll and section values
-        setValue("roll", "");
-        setValue("section", "");
-        setSelectedStudent(null);
+        setSelectedClass(selectedClass);
     };
 
+    // Event handler for roll selection
     const handleRollChange = (e) => {
         const selectedRoll = e.target.value;
-        // Filter students based on the selected roll and class
-        const filteredStudents = students.filter(student => student.roll === selectedRoll);
-        setSelectedStudent(filteredStudents[0] || null);
+        setSelectedRoll(selectedRoll);
     };
 
+    // Event handler for section selection
     const handleSectionChange = (e) => {
         const selectedSection = e.target.value;
-        // Filter students based on the selected section and class
-        const filteredStudents = students.filter(student => student.section === selectedSection);
-        setSelectedStudent(filteredStudents[0] || null);
+        setSelectedSection(selectedSection);
     };
 
+    // Fetch students data when the component mounts
+    useEffect(() => {
+        const fetchStudents = async () => {
+            try {
+                const res = await axiosSecure.get('/students');
+                setStudents(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchStudents();
+    }, [axiosSecure]);
+
+    // Update student details when class, roll, or section changes
+    useEffect(() => {
+        if (selectedClass && selectedRoll && selectedSection) {
+            const student = findStudent(students, selectedClass, selectedRoll, selectedSection);
+            if (student) {
+                // If a matching student is found, update the state with student details
+                setSelectedStudent(student);
+                setValue("name", student.name);
+                setValue("fName", student.fName);
+                setValue("mName", student.mName);
+                setValue("shift", student.shift);
+                setValue("dateOfBirth", student.dateOfBirth);
+            } else {
+                // If no matching student is found, clear the student details
+                setSelectedStudent(null);
+                setValue("name", "");
+                setValue("fName", "");
+                setValue("mName", "");
+                setValue("shift", "");
+                setValue("dateOfBirth", "");
+            }
+        }
+    }, [selectedClass, selectedRoll, selectedSection, students, setValue]);
+
+    
     return (
         <div>
             <h1 className="font-bold text-3xl text-center mt-6 mb-6 uppercase">Added Student Result</h1>
@@ -206,7 +256,7 @@ const AddResult = () => {
                                 <label className="label">
                                     <span className="label-text">Father Name</span>
                                 </label>
-                                <input type="text" value={selectedStudent?.fName || ''} onChange={(e) => setValue("fName", e.target.value)} {...register("fName", { required: true })} name="fName" placeholder="Enter Father Name" className="input input-bordered" />
+                                <input readOnly type="text" value={selectedStudent?.fName || ''} onChange={(e) => setValue("fName", e.target.value)} {...register("fName", { required: true })} name="fName" placeholder="Enter Father Name" className="input input-bordered" />
                             </div>
 
 
@@ -214,7 +264,7 @@ const AddResult = () => {
                                 <label className="label">
                                     <span className="label-text">Mother name</span>
                                 </label>
-                                <input type="text" value={selectedStudent?.mName || ''} onChange={(e) => setValue("mName", e.target.value)} {...register("mName", { required: true })} name="mName" placeholder="Enter Mother Name" className="input input-bordered" />
+                                <input readOnly type="text" value={selectedStudent?.mName || ''} onChange={(e) => setValue("mName", e.target.value)} {...register("mName", { required: true })} name="mName" placeholder="Enter Mother Name" className="input input-bordered" />
                             </div>
                         </div>
 
@@ -232,14 +282,14 @@ const AddResult = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="name" value={selectedStudent?.name || ''} onChange={(e) => setValue("name", e.target.value)} {...register("name", { required: true })} name="name" className="input input-bordered" />
+                                <input readOnly type="name" value={selectedStudent?.name || ''} onChange={(e) => setValue("name", e.target.value)} {...register("name", { required: true })} name="name" className="input input-bordered" />
                             </div>
 
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Shift</span>
                                 </label>
-                                <input type="text" value={selectedStudent?.shift || ''} onChange={(e) => setValue("shift", e.target.value)} {...register("shift", { required: true })} name="shift" className="input input-bordered" />
+                                <input readOnly type="text" value={selectedStudent?.shift || ''} onChange={(e) => setValue("shift", e.target.value)} {...register("shift", { required: true })} name="shift" className="input input-bordered" />
                             </div>
 
                             <div className="form-control">
