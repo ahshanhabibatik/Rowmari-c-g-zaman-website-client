@@ -1,20 +1,42 @@
 import { NavLink } from "react-router-dom";
 import useAdmin from "../PanelControl/UseAdmin";
 import UseTeacher from "../PanelControl/UseTEacher";
+import { useState } from "react";
 
 const NavBar = () => {
     const [isAdmin] = useAdmin();
     const [isTeacher] = UseTeacher();
+    const [activeMenu, setActiveMenu] = useState(null);
+
+    const handleMenuClick = (menu) => {
+        if (activeMenu !== menu) {
+            setActiveMenu(menu);
+        }
+    };
 
     const navOptions = (
         <>
-            <li><NavLink exact to={'/'} activeClassName="active">Home</NavLink></li>
-            <li><NavLink to={'/about'} activeClassName="active">About Us</NavLink></li>
-            <li><NavLink to={'/teacherInfo'} activeClassName="active">Teacher Information</NavLink></li>
-            <li><NavLink to={'/studentInfo'} activeClassName="active">Student Information</NavLink></li>
-            <li><NavLink to={'/result'} activeClassName="active">Result</NavLink></li>
+            <li><NavLink exact to={'/'} activeClassName="active" onClick={() => handleMenuClick('home')} style={activeMenu === 'home' ? { borderBottom: '2px solid red' } : null}>Home</NavLink></li>
+
+            <li><NavLink to={'/about'} activeClassName="active" onClick={() => handleMenuClick('about')} style={activeMenu === 'about' ? { borderBottom: '2px solid red' } : null}>About Us</NavLink></li>
+
+            <li><NavLink to={'/teacherInfo'} activeClassName="active" onClick={() => handleMenuClick('teacher')} style={activeMenu === 'teacher' ? { borderBottom: '2px solid red' } : null}>Teacher Information</NavLink></li>
+
+            <li className="dropdown">
+                <label tabIndex={0} className="">Student</label>
+                <ul className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-[#330033] rounded-box w-32">
+                    <li><NavLink to={'/allStu'} activeClassName="active" onClick={() => handleMenuClick('allStudents')} style={activeMenu === 'allStudents' ? { borderBottom: '2px solid red' } : null}>All Students</NavLink></li>
+
+
+                    <li><NavLink to={'/total'} activeClassName="active" onClick={() => handleMenuClick('totalStudents')} style={activeMenu === 'totalStudents' ? { borderBottom: '2px solid red' } : null}>Total Student</NavLink></li>
+                </ul>
+            </li>
+
+            <li><NavLink to={'/result'} activeClassName="active" onClick={() => handleMenuClick('result')} style={activeMenu === 'result' ? { borderBottom: '2px solid red' } : null}>Result</NavLink></li>
+
+
             {(isAdmin || isTeacher) && (
-                <li><NavLink to={'/dashBoard'} activeClassName="active">DashBoard</NavLink></li>
+                <li><NavLink to={'/dashBoard'} activeClassName="active" onClick={() => handleMenuClick('dashboard')} style={activeMenu === 'dashboard' ? { borderBottom: '2px solid red' } : null}>DashBoard</NavLink></li>
             )}
         </>
     );

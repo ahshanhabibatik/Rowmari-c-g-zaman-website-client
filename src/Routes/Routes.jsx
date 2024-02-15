@@ -27,6 +27,8 @@ import UpdateNotice from "../AdminPanel/UpdateNotice";
 import UserNotice from "../Page/News/UserNotice";
 import ShowResult from "../TeacherPanel/ShowResult";
 import ShowAdminResult from "../AdminPanel/ShowAdminResult";
+import UserStudentInfo from "../Page/UserStudentInfo";
+import TotalStudent from "../Page/TotalStudent";
 
 
 
@@ -70,6 +72,14 @@ const router = createBrowserRouter([
             {
                 path: "/videos",
                 element: <Video></Video>,
+            },
+            {
+                path: "/allStu",
+                element: <UserStudentInfo></UserStudentInfo>,
+            },
+            {
+                path: "/total",
+                element: <TotalStudent></TotalStudent>,
             },
 
 
