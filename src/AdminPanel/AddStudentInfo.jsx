@@ -134,7 +134,6 @@ const AddStudentInfo = () => {
                                     <option value="8">8</option>
                                     <option value="9">9</option>
                                     <option value="10">10</option>
-                                    <option value="Vocational">Vocational</option>
                                 </select>
                                 {errors.bloodGroup && <span className="text-red-600">Class is required</span>}
                             </div>

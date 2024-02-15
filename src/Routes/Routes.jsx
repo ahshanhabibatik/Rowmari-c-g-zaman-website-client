@@ -10,7 +10,6 @@ import Home from "../Page/Home/Home";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import AboutUs from "../Page/About/AboutUs";
-import News from "../Page/News/News";
 import ReadMessage from "../Page/ReadMessage/ReadMessage";
 import ImageGallery from "../Page/ImageGallery/ImageGallery";
 import Video from "../Page/Video/Video";
@@ -25,6 +24,9 @@ import AddResult from "../TeacherPanel/AddResult";
 import AdminNews from "../AdminPanel/AdminNews";
 import ShowNews from "../AdminPanel/ShowNews";
 import UpdateNotice from "../AdminPanel/UpdateNotice";
+import UserNotice from "../Page/News/UserNotice";
+import ShowResult from "../TeacherPanel/ShowResult";
+import ShowAdminResult from "../AdminPanel/ShowAdminResult";
 
 
 
@@ -51,7 +53,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/news",
-                element: <News></News>,
+                element: <UserNotice></UserNotice>,
             },
             {
                 path: "/message",
@@ -79,7 +81,7 @@ const router = createBrowserRouter([
         children: [
             // Admin dashboard
             {
-                path: 'home',
+                path: '',
                 element: <AdminHome></AdminHome>
             },
             {
@@ -112,6 +114,10 @@ const router = createBrowserRouter([
                 element: <UpdateNotice></UpdateNotice>,
                 loader: ({ params }) => fetch(`http://localhost:5001/news/${params.id}`)
             },
+            {
+                path: 'result',
+                element: <ShowAdminResult></ShowAdminResult>
+            },
 
             // TeacherDashboard
             {
@@ -121,6 +127,10 @@ const router = createBrowserRouter([
             {
                 path: "addResult",
                 element: <AddResult></AddResult>
+            },
+            {
+                path: "SeeResult",
+                element: <ShowResult></ShowResult>
             },
 
         ]

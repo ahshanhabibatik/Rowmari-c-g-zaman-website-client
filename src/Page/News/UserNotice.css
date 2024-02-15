@@ -1,33 +1,10 @@
-.marquee-container {
-    height: 230px;
-    /* Adjust the height as needed */
-    overflow: hidden;
-    position: relative;
-}
-
-.marquee {
-    position: absolute;
-    animation: marquee 20s linear infinite;
-}
-
-@keyframes marquee {
-    0% {
-        top: 100%;
-    }
-
-    100% {
-        top: -100%;
-    }
-}
-
-
 .animate-charcter {
     text-transform: uppercase;
     background-image: linear-gradient(-225deg,
-            #14b459 0%,
-            #eadb07 29%,
-            #ff1361 67%,
-            #fff800 100%);
+            #10d06a 0%,
+            #37066c 29%,
+            #df580a 67%,
+            #3214c6 100%);
     background-size: auto auto;
     background-clip: border-box;
     background-size: 50% auto;
@@ -36,9 +13,11 @@
     text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: textclip 10s linear infinite;
+    animation: textclip 4s linear infinite;
     display: inline-block;
     font-size: 30px;
+    
+
 }
 
 @keyframes textclip {

@@ -15,7 +15,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
             <li>
                 {isAdmin && (
                     <>
-                        <NavLink to={'/dashboard/home'}>
+                        <NavLink to={'/dashboard'}>
                             <FaHome /> Admin Home
                         </NavLink>
                         <NavLink to={'/dashboard/users'}>
@@ -46,6 +46,9 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         </NavLink>
                         <NavLink to={'/dashboard/addResult'}>
                             <FaShoppingCart /> Add Result
+                        </NavLink>
+                        <NavLink to={'/dashboard/SeeResult'}>
+                            <FaShoppingCart /> Result
                         </NavLink>
                         <NavLink to={'/dashboard/surveyData'}>
                             Passing Student

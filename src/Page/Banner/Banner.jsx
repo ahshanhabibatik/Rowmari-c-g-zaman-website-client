@@ -8,9 +8,12 @@ import slider4 from '../../assets/slider/slider-4.jpg';
 import Marquee from 'react-fast-marquee';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import useAxiosPublic from '../../Hook/UseAxiosPublic';
 
 const Banner = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
+    const [latestNews, setLatestNews] = useState({});
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -22,6 +25,22 @@ const Banner = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const fetchLatestNews = async () => {
+            try {
+                const response = await axiosPublic.get('/news');
+                const sortedNews = response.data.sort((a, b) => new Date(b.dateTime) - new Date(a.dateTime));
+                setLatestNews(sortedNews[0]);
+            } catch (error) {
+                console.error('Error fetching news:', error);
+            }
+        };
+
+        fetchLatestNews();
+
+        // Cleanup function not needed here, as this effect doesn't set up any ongoing subscriptions
+    }, [axiosPublic]);
+
     return (
         <div className="relative z-[1]">
             <img className="h-[800px]" src={banner} alt="" />
@@ -29,20 +48,16 @@ const Banner = () => {
             <div className='absolute top-5 px-8'>
                 <div className="flex items-center text-center p-1">
                     <div>
-                        <h1 className='text-xl text-white bg-red-800 p-2'>NEWS</h1>
+                        <h1 className='text-xl text-white bg-red-800 p-2 uppercase w-40'>latest News</h1>
                     </div>
                     <div className="bg-white text-white p-2">
                         <Marquee pauseOnHover={true}>
                             <Link to={'/news'} className='text-gray-500'>
-                                
-                                <Link className='ml-10' to={'/news'}>
-                                    চৌধুরী গওহরুজ্জামান সরকারি উচ্চ বিদ্যালয়ে ষষ্ঠ শ্রেণিতে ভর্তির আবেদন শুরু ১৬-১১-২০২২ শেষ ০৬-১২-২০২২ । বিদ্যালয়ের ওয়েবসাইটে Admission 2023 Link এ প্রবেশ করে বিস্তারিত তথ্য পুরণ করে ফরমটি ডাউনলোড করুন এবং ১১০ টাকা ফি সহ বিদ্যালয়ের অফিস চলাকালীন সময়ে জমা করুন। ভর্তির জন্য শিক্ষার্থী বাছাই লটারীর মাধ্যমে করা হবে। লটারীর তারিখ পরবর্তীতে ওয়েব সাইটে নোটিশের মাধ্যমে এবং অভিভাবকের মোবাইলে মেসেজের মাধ্যমে জানানো হবে।
-                                </Link>
+                                {latestNews.head}
                             </Link>
                         </Marquee>
                     </div>
                     <div className='flex'>
-
                         <h1 className='text-xl w-36 border-r text-white bg-red-800 p-2'>{currentTime.toLocaleTimeString()}</h1>
                         <h1 className='text-xl text-white bg-red-800 p-2'>{currentTime.toLocaleDateString()}</h1>
                     </div>

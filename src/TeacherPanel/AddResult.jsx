@@ -64,10 +64,17 @@ const AddResult = () => {
         return { grade, gradePoint, gradeLetter };
     };
 
-    const calculateTotalGrade = (totalPoint) => {
+    const calculateTotalGrade = (totalPoint, subjectGradeLetters) => {
         let totalGrade = '';
 
-        if (totalPoint === 5.00) {
+        // Check if any subject has a grade letter of 'F'
+        const hasFailingGrade = Object.values(subjectGradeLetters).some(gradeLetter => gradeLetter === 'F');
+
+        // If any subject has a failing grade, set the total grade to 'F' and average grade point to 0
+        if (hasFailingGrade) {
+            totalGrade = 'F';
+            totalPoint = 0; // Set average grade point to 0
+        } else if (totalPoint === 5.00) {
             totalGrade = 'A+';
         } else if (totalPoint >= 4.00) {
             totalGrade = 'A';
@@ -83,8 +90,9 @@ const AddResult = () => {
             totalGrade = 'F';
         }
 
-        return totalGrade;
+        return { totalGrade, averageGradePoint: totalPoint };
     };
+
 
     const onSubmit = async (data) => {
         // Calculate total marks, subject-wise grade points, grade letters, average grade point, and total grade
@@ -108,7 +116,7 @@ const AddResult = () => {
         });
 
         const totalPoint = totalGradePoints / totalSubjects;
-        const totalGrade = calculateTotalGrade(totalPoint);
+        const { totalGrade } = calculateTotalGrade(totalPoint, subjectGradeLetters); // Pass subject grade letters to calculateTotalGrade function
 
         // Update state variables
         setTotalMarks(totalMarks);
@@ -126,7 +134,7 @@ const AddResult = () => {
                 subjectGradePoints,
                 subjectGradeLetters, // Pass subject grade letters to the backend
                 averageGradePoint: totalPoint,
-                totalGrade
+                totalGrade // Pass the calculated total grade to the backend
             });
 
             if (res.data.insertedId) {
@@ -154,7 +162,7 @@ const AddResult = () => {
 
     // search student for class section and roll
 
-     // Function to find a student based on class, roll, and section
+    // Function to find a student based on class, roll, and section
     const findStudent = (students, classValue, roll, section) => {
         return students.find(student => student.class === classValue && student.roll === roll && student.section === section);
     };
@@ -214,7 +222,7 @@ const AddResult = () => {
         }
     }, [selectedClass, selectedRoll, selectedSection, students, setValue]);
 
-    
+
     return (
         <div>
             <h1 className="font-bold text-3xl text-center mt-6 mb-6 uppercase">Added Student Result</h1>

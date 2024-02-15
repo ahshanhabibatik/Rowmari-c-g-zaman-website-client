@@ -10,20 +10,11 @@ const NavBar = () => {
         <>
             <li><NavLink exact to={'/'} activeClassName="active">Home</NavLink></li>
             <li><NavLink to={'/about'} activeClassName="active">About Us</NavLink></li>
-
+            <li><NavLink to={'/teacherInfo'} activeClassName="active">Teacher Information</NavLink></li>
+            <li><NavLink to={'/studentInfo'} activeClassName="active">Student Information</NavLink></li>
+            <li><NavLink to={'/result'} activeClassName="active">Result</NavLink></li>
             {(isAdmin || isTeacher) && (
                 <li><NavLink to={'/dashBoard'} activeClassName="active">DashBoard</NavLink></li>
-            )}
-
-            {!isAdmin && !isTeacher && (
-                <li><NavLink to={'/teacherInfo'} activeClassName="active">Teacher Information</NavLink></li>
-            )}
-
-            {!isAdmin && !isTeacher && (
-                <li><NavLink to={'/studentInfo'} activeClassName="active">Student Information</NavLink></li>
-            )}
-            {!isAdmin && !isTeacher && (
-                <li><NavLink to={'/result'} activeClassName="active">Result</NavLink></li>
             )}
         </>
     );

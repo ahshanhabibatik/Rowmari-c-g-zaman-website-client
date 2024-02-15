@@ -25,11 +25,11 @@ const Header = () => {
                     <img src={logo} className='h-24 pl-6' alt="" />
                 </div>
                 <div>
-                    <h1 className='text-white text-2xl font-bold'>রৌমারী সি.জি জামান
+                    <h1 className='text-white lg:text-2xl font-bold'>রৌমারী সি.জি জামান
                         সরকারি উচ্চ বিদ্যালয়, রৌমারী </h1>
                     <p className='border-b-2 border-dashed  '></p>
-                    <h1 className='text-white text-2xl font-bold'>Rowmari C.G Zaman Govt. High School,Rowmari</h1>
-                    <h1 className='text-white text-2x font-bold px-40'>SINCE:1949,EIIN:132043</h1>
+                    <h1 className='text-white lg:text-2xl font-bold'>Rowmari C.G Zaman Govt. High School,Rowmari</h1>
+                    <h1 className='text-white lg:text-2x font-bold px-40'>SINCE:1949,EIIN:132043</h1>
                 </div>
             </div>
 
