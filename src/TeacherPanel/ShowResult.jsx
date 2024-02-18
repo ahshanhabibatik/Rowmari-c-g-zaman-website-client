@@ -164,11 +164,11 @@ const ShowResult = () => {
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td className="border px-4 py-2 font-semibold text-center">Total</td>
+                                        <td className="border px-4 py-2 font-semibold text-center">Letter Grade</td>
                                         <td className="border px-4 py-2 font-semibold text-center" colSpan="2">{selectedResult.totalGrade}</td>
                                     </tr>
                                     <tr>
-                                        <td className="border px-4 py-2 font-semibold text-center">Average</td>
+                                        <td className="border px-4 py-2 font-semibold text-center">Total GPA</td>
                                         <td className="border px-4 py-2 font-semibold text-center" colSpan="2">{selectedResult.averageGradePoint}</td>
                                     </tr>
                                 </tfoot>

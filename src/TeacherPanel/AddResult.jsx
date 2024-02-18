@@ -237,7 +237,7 @@ const AddResult = () => {
                                     <span className="label-text">Class</span>
                                 </label>
                                 <select {...register("class", { required: true })} name="class" className="select select-bordered" onChange={handleClassChange}>
-                                    <option value="" disabled>Select Class</option>
+                                    <option value="">Select Class</option>
                                     <option value="6">6</option>
                                     <option value="7">7</option>
                                     <option value="8">8</option>
@@ -252,7 +252,7 @@ const AddResult = () => {
                                     <span className="label-text">Section</span>
                                 </label>
                                 <select {...register("section", { required: true })} name="section" className="select select-bordered" onChange={handleSectionChange}>
-                                    <option value="" disabled>Select Section</option>
+                                    <option value="">Select Section</option>
                                     <option value="A">A</option>
                                     <option value="B">B</option>
                                     <option value="C">C</option>

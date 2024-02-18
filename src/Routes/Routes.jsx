@@ -29,6 +29,8 @@ import ShowResult from "../TeacherPanel/ShowResult";
 import ShowAdminResult from "../AdminPanel/ShowAdminResult";
 import UserStudentInfo from "../Page/UserStudentInfo";
 import TotalStudent from "../Page/TotalStudent";
+import PublishedResult from "../AdminPanel/PublishedResult";
+import SeenResult from "../Page/SeenResult";
 
 
 
@@ -81,7 +83,10 @@ const router = createBrowserRouter([
                 path: "/total",
                 element: <TotalStudent></TotalStudent>,
             },
-
+            {
+                path: "/result",
+                element: <SeenResult></SeenResult>,
+            },
 
         ]
     },
@@ -127,6 +132,10 @@ const router = createBrowserRouter([
             {
                 path: 'result',
                 element: <ShowAdminResult></ShowAdminResult>
+            },
+            {
+                path: 'publicResult',
+                element: <PublishedResult></PublishedResult>
             },
 
             // TeacherDashboard

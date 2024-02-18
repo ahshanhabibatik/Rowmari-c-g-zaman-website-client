@@ -12,6 +12,7 @@ const ShowAdminResult = () => {
     const [searchRoll, setSearchRoll] = useState("");
     const [searchSection, setSearchSection] = useState("");
     const [searchMessage, setSearchMessage] = useState("");
+    const [resultsPublished, setResultsPublished] = useState(false);
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -86,6 +87,39 @@ const ShowAdminResult = () => {
 
     const handleCloseModal = () => {
         setSelectedResult(null);
+    };
+
+    const handlePublishResults = () => {
+        if (resultsPublished) {
+            Swal.fire({
+                title: "Results Already Published!",
+                text: "Results have already been published.",
+                icon: "warning"
+            });
+            return;
+        }
+
+        axiosSecure.post('/results/publish')
+            .then(res => {
+                console.log(res.data);
+                setResultsPublished(true);
+                Swal.fire({
+                    title: "Published!",
+                    text: "Results have been published.",
+                    icon: "success"
+                });
+            })
+            .catch((error) => {
+                console.error("Error publishing results:", error);
+            });
+    };
+
+    const handleDoubleClickPublishButton = () => {
+        Swal.fire({
+            title: "Results Already Published!",
+            text: "Results have already been published.",
+            icon: "warning"
+        });
     };
 
     return (
@@ -262,6 +296,17 @@ const ShowAdminResult = () => {
                     </div>
                 </div>
             )}
+
+            <div className="flex gap-3 mt-6 mx-auto justify-end">
+                <button
+                    className={`btn btn-primary fixed bottom-5 right-5 ${resultsPublished ? "cursor-not-allowed" : ""
+                        }`}
+                    onClick={resultsPublished ? handleDoubleClickPublishButton : handlePublishResults}
+                    disabled={resultsPublished}
+                >
+                    Publish Results
+                </button>
+            </div>
         </div>
     );
 };
