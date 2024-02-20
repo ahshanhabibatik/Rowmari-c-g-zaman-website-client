@@ -9,6 +9,7 @@ import Media from "../Media/Media";
 import NavBar from "../../Navber/NavBar";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hook/UseAxiosPublic";
+import './home.css'
 
 
 const Home = () => {
@@ -67,7 +68,7 @@ const Home = () => {
                                 <div className="marquee">
                                     {news.map((item, index) => (
                                         <Link key={index} to={'/news'}>
-                                            <h1 className="border px-4 pb-3 pt-3 bg-[#FFC000]">
+                                            <h1 className="border px-4 pb-3 pt-3 bg-[#FFC000] font-face">
                                                 {item.head}
                                             </h1>
                                         </Link>

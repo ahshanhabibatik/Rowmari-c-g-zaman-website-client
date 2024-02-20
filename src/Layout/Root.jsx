@@ -8,7 +8,7 @@ import Footer from "../Page/Footer/Footer";
 
 const Root = () => {
     return (
-        <div className=" bg-white   mx-auto font-poppins">
+        <div className=" bg-white   mx-auto font-">
             <Header></Header>
 
             <Outlet></Outlet>

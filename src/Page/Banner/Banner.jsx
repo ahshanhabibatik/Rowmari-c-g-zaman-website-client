@@ -9,6 +9,7 @@ import Marquee from 'react-fast-marquee';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import useAxiosPublic from '../../Hook/UseAxiosPublic';
+import './banner.css'
 
 const Banner = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -50,9 +51,9 @@ const Banner = () => {
                     <div>
                         <h1 className='text-xl text-white bg-red-800 p-2 uppercase w-40'>latest News</h1>
                     </div>
-                    <div className="bg-white text-white p-2">
+                    <div className="bg-white text-white p-2 font-face">
                         <Marquee pauseOnHover={true}>
-                            <Link to={'/news'} className='text-gray-500'>
+                            <Link to={'/news'} className='text-black'>
                                 {latestNews.head}
                             </Link>
                         </Marquee>

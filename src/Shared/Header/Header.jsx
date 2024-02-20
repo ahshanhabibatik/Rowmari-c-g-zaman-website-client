@@ -8,6 +8,12 @@ const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     const [isNameVisible, setIsNameVisible] = useState(false);
 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
     const handleSignOut = () => {
         logOut()
             .then()

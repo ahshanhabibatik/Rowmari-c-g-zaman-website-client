@@ -41,6 +41,7 @@ const PublishedResult = () => {
                         <th className="px-4 border py-2">Student Name</th>
                         <th className="px-4 border py-2">Class</th>
                         <th className="px-4 border py-2">Roll</th>
+                        <th className="px-4 border py-2">section</th>
                         <th className="px-4 border py-2">Total Marks</th>
                         <th className="px-4 border py-2">Grade</th>
                         <th className="px-4 border py-2">Average Grade Point</th>
@@ -53,6 +54,7 @@ const PublishedResult = () => {
                             <td className="border px-4 py-2">{result.name}</td>
                             <td className="border px-4 py-2">{result.class}</td>
                             <td className="border px-4 py-2">{result.roll}</td>
+                            <td className="border px-4 py-2">{result.section}</td>
                             <td className="border px-4 py-2">{result.totalMarks}</td>
                             <td className="border px-4 py-2">{result.totalGrade}</td>
                             <td className="border px-4 py-2">{result.averageGradePoint}</td>
