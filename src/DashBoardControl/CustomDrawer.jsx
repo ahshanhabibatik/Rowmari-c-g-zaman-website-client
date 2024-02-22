@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { FaHome, FaShoppingCart } from 'react-icons/fa';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
+import "./custom.css"
 
 const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
     <Drawer
@@ -11,11 +12,11 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
         direction='left'
         className=' w-64 '
     >
-        <ul className="menu bg-[#74189c] h-full text-white ">
-            <li>
+        <ul className="menu  bg-[#74189c] h-full text-white ">
+            <li id='sidebar '>
                 {isAdmin && (
                     <>
-                        <NavLink to={'/dashboard'}>
+                        <NavLink to={'/dashboard/home'}>
                             <FaHome /> Admin Home
                         </NavLink>
                         <NavLink to={'/dashboard/users'}>
@@ -38,6 +39,10 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         </NavLink>
                         <NavLink to={'/dashboard/adNews'}>
                             <FaHome /> Upload News
+                        </NavLink>
+                        
+                        <NavLink to={'/dashboard/admit'}>
+                            <FaHome /> Admit Card
                         </NavLink>
 
                     </>

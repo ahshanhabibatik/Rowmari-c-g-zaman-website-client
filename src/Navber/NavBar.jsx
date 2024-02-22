@@ -1,42 +1,50 @@
-import { NavLink } from "react-router-dom";
-import useAdmin from "../PanelControl/UseAdmin";
-import UseTeacher from "../PanelControl/UseTEacher";
-import { useState } from "react";
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import useAdmin from '../PanelControl/UseAdmin';
+import UseTeacher from '../PanelControl/UseTEacher';
+import './navber.css'
 
 const NavBar = () => {
     const [isAdmin] = useAdmin();
     const [isTeacher] = UseTeacher();
-    const [activeMenu, setActiveMenu] = useState(null);
 
-    const handleMenuClick = (menu) => {
-        if (activeMenu !== menu) {
-            setActiveMenu(menu);
-        }
-    };
+
+
 
     const navOptions = (
         <>
-            <li><NavLink exact to={'/'} activeClassName="active" onClick={() => handleMenuClick('home')} style={activeMenu === 'home' ? { borderBottom: '2px solid red' } : null}>Home</NavLink></li>
+            <li id="sidebar" className='roboto-regular'>
+                <NavLink to={'/'}>Home</NavLink>
+            </li>
 
-            <li><NavLink to={'/about'} activeClassName="active" onClick={() => handleMenuClick('about')} style={activeMenu === 'about' ? { borderBottom: '2px solid red' } : null}>About Us</NavLink></li>
-
-            <li><NavLink to={'/teacherInfo'} activeClassName="active" onClick={() => handleMenuClick('teacher')} style={activeMenu === 'teacher' ? { borderBottom: '2px solid red' } : null}>Teacher Information</NavLink></li>
-
-            <li className="dropdown">
-                <label tabIndex={0} className="">Student</label>
-                <ul className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-[#330033] rounded-box w-32">
-                    <li><NavLink to={'/allStu'} activeClassName="active" onClick={() => handleMenuClick('allStudents')} style={activeMenu === 'allStudents' ? { borderBottom: '2px solid red' } : null}>All Students</NavLink></li>
-
-
-                    <li><NavLink to={'/total'} activeClassName="active" onClick={() => handleMenuClick('totalStudents')} style={activeMenu === 'totalStudents' ? { borderBottom: '2px solid red' } : null}>Total Student</NavLink></li>
+            <li id="sidebar" className="dropdown roboto-regular">
+                <button className="dropbtn">About Us</button>
+                <ul className="dropdown-content p-4 w-28">
+                    <li id="sidebar" className='mb-2'><NavLink to={'/about'}>Vision</NavLink></li>
+                    <li id="sidebar"><NavLink to={'/total'}>Mission</NavLink></li>
                 </ul>
             </li>
 
-            <li><NavLink to={'/result'} activeClassName="active" onClick={() => handleMenuClick('result')} style={activeMenu === 'result' ? { borderBottom: '2px solid red' } : null}>Result</NavLink></li>
+            <li id="sidebar" className='roboto-regular'>
+                <NavLink to={'/teacherInfo'} >Teacher Information</NavLink>
+            </li>
 
+            <li id="sidebar" className="dropdown roboto-regular">
+                <button className="dropbtn">Student</button>
+                <ul className="dropdown-content p-4 w-48">
+                    <li id="sidebar" className='mb-2'><NavLink to={'/allStu'}>All Students</NavLink></li>
+                    <li id="sidebar"><NavLink to={'/total'}>Class Summary</NavLink></li>
+                </ul>
+            </li>
+
+            <li id="sidebar" className='roboto-regular'>
+                <NavLink to={'/result'} >Result</NavLink>
+            </li>
 
             {(isAdmin || isTeacher) && (
-                <li><NavLink to={'/dashBoard'} activeClassName="active" onClick={() => handleMenuClick('dashboard')} style={activeMenu === 'dashboard' ? { borderBottom: '2px solid red' } : null}>DashBoard</NavLink></li>
+                <li id="sidebar" className='roboto-regular'>
+                    <NavLink to={'/dashBoard'} >DashBoard</NavLink>
+                </li>
             )}
         </>
     );
@@ -57,7 +65,7 @@ const NavBar = () => {
                         </div>
                     </div>
                     <div className="navbar-center hidden lg:flex">
-                        <ul className="menu menu-horizontal px-1 text-xl">
+                        <ul className="flex gap-5 menu-horizontal px-1 text-xl">
                             {navOptions}
                         </ul>
                     </div>

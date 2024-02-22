@@ -36,10 +36,10 @@ const DashBoard = () => {
         <div className="flex ">
             <CustomDrawer isAdmin={isAdmin} isTeacher={isTeacher} isOpen={drawerOpen} onClose={toggleDrawer} />
 
-            <div className="flex-1 p-10">
+            <div className="flex-1 ">
                 <div>
                     {/* Button to toggle the drawer */}
-                    <button className='bg-slate-400 w-full p-4 text-2xl' onClick={toggleDrawer}><FaAlignJustify /></button>
+                    <button className='bg-[#74189c] p-6  w-full text-white text-2xl' onClick={toggleDrawer}><FaAlignJustify /></button>
                 </div>
                 <Outlet></Outlet>
             </div>

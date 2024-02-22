@@ -15,7 +15,6 @@ import ImageGallery from "../Page/ImageGallery/ImageGallery";
 import Video from "../Page/Video/Video";
 import DashBoard from "../DashBoardControl/Dashboard";
 import AdminHome from "../DashBoardControl/AdminRouter/AdminHome";
-import TeacherHome from "../DashBoardControl/TeacherRoute/TeacherHome";
 import AllUsers from "../DashBoardControl/AdminRouter/AllUsers";
 import AddStudentInfo from "../AdminPanel/AddStudentInfo";
 import StudentInfo from "../AdminPanel/StudentInfo";
@@ -32,6 +31,8 @@ import TotalStudent from "../Page/TotalStudent";
 import PublishedResult from "../AdminPanel/PublishedResult";
 import SeenResult from "../Page/SeenResult";
 import PageResult from "../Page/PageResult";
+import AdmitCard from "../AdminPanel/AdmitCard";
+import TeacherHome from "../TeacherPanel/TeacherHome";
 
 
 
@@ -101,7 +102,7 @@ const router = createBrowserRouter([
         children: [
             // Admin dashboard
             {
-                path: '',
+                path: 'home',
                 element: <AdminHome></AdminHome>
             },
             {
@@ -141,6 +142,10 @@ const router = createBrowserRouter([
             {
                 path: 'publicResult',
                 element: <PublishedResult></PublishedResult>
+            },
+            {
+                path: 'admit',
+                element: <AdmitCard></AdmitCard>
             },
 
             // TeacherDashboard

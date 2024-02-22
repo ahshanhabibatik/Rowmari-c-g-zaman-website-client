@@ -28,15 +28,11 @@ const PageResult = () => {
     const location = useLocation();
     const selectedResults = location.state.selectedResults;
 
-
     if (!selectedResults || selectedResults.length === 0) {
         return <div>No results found</div>;
     }
 
-
     const studentData = selectedResults[0];
-
-    
 
     const downloadResultSheet = () => {
         const element = document.getElementById("resultSheet");
@@ -60,29 +56,36 @@ const PageResult = () => {
                         </div>
                     </div>
                     <h1 className="text-center font-bold text-2xl my-3">Result Sheet</h1>
-                    <table className="mx-auto w-[640px] align-middle">
+                    <table className="mx-auto w-[640px] align-middle bg-slate-50">
                         <tbody>
                             <tr className="border ">
-                                <td className="border text-center p-2">Roll</td>
+                                <th className="border text-center p-2">Roll</th>
                                 <td className="border text-center">{studentData.roll}</td>
-                                <td className="border text-center">Class</td>
-                                <td className="border text-center">{studentData.class}</td>
+                                <th className="border text-center">Name</th>
+                                <td className="border text-center">{studentData.name}</td>
                             </tr>
                             <tr>
-                                <td className="border text-center p-2">Father's Name</td>
+                                <th className="border text-center p-2">Class</th>
+                                <td className="border text-center">{studentData.class}</td>
+                                <th className="border text-center">Father's Name</th>
                                 <td className="border text-center">{studentData.fName}</td>
-                                <td className="border text-center">Mother's Name</td>
+                            </tr>
+                            <tr>
+                                <th className="border text-center p-2">Date of Birth</th>
+                                <td className="border text-center">{studentData.dateOfBirth}</td>
+                                <th className="border text-center">Mother's Name</th>
                                 <td className="border text-center">{studentData.mName}</td>
                             </tr>
                             <tr>
-                                <td className="border text-center p-2">Date of Birth</td>
-                                <td className="border text-center">{studentData.dateOfBirth}</td>
-                                <td className="border text-center">Institute</td>
-                                <td className="border text-center">RGC</td>
+                                <th className="border text-center p-2">Total Grade</th>
+                                <td className="border  font-bold text-center">{studentData.totalGrade}</td>
+                                <th className="border text-center p-2">GPA</th>
+                                <td className="border  font-bold text-center">{studentData.averageGradePoint}</td>
                             </tr>
+
                             <tr>
-                                <td className="border text-center p-2">Total Grade</td>
-                                <td className="border  font-bold pl-3">{studentData.totalGrade}</td>
+                                <th className="border text-center p-2">Total Number</th>
+                                <td className="border  font-bold text-center">{studentData.totalMarks}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -90,14 +93,14 @@ const PageResult = () => {
                     {/* Grade Sheet Table */}
                     <h2 className="text-center my-3 font-bold text-2xl">Grade Sheet:</h2>
                     <div className="flex justify-center ">
-                        <table className="mt-4 mb-4 mx-auto w-[640px] align-middle">
+                        <table className="mt-4 mb-4 mx-auto w-[640px] align-middle bg-slate-50" style={{ tableLayout: "fixed" }}>
                             <thead>
                                 <tr>
-                                    <th className="border text-center p-2">Sl</th>
-                                    <th className="border text-center p-2">Subject</th>
-                                    <th className="border text-center p-2">Subject Number</th>
-                                    <th className="border text-center p-2">Grade Letter</th>
-                                    <th className="border text-center p-2">Grade Points</th>
+                                    <th className="border text-center p-2" style={{ width: "10%" }}>Sl</th>
+                                    <th className="border text-center p-2" style={{ width: "30%" }}>Subject</th>
+                                    <th className="border text-center p-2" style={{ width: "20%" }}>Subject Number</th>
+                                    <th className="border text-center p-2" style={{ width: "20%" }}>Grade Letter</th>
+                                    <th className="border text-center p-2" style={{ width: "20%" }}>Grade Points</th>
                                 </tr>
                             </thead>
                             <tbody>

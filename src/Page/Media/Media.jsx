@@ -16,7 +16,7 @@ const Media = () => {
     };
 
     return (
-        <div>
+        <div className='mb-64'>
 
 
             <div>
@@ -53,7 +53,7 @@ const Media = () => {
                         </div>
                     </div>
 
-                    <div className="lg:flex mx-auto justify-center mt-4 gap-2">
+                    <div className="lg:flex mx-auto justify-center mt-4  gap-2">
                         {images.map((img, index) => (
                             <div key={index} className="slider-container">
                                 <img
