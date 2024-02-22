@@ -1,20 +1,22 @@
+// SeenResult.js
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../Hook/AxiosSecure";
 import NavBar from "../Navber/NavBar";
 import logo from '../../src/assets/slider/cgzaman logo (1).png';
 import Swal from 'sweetalert2';
+ 
 
 const SeenResult = () => {
     const axiosSecure = useAxiosSecure();
     const [results, setResults] = useState([]);
-    const [selectedResult, setSelectedResult] = useState(null);
     const [searchClass, setSearchClass] = useState("");
     const [searchRoll, setSearchRoll] = useState("");
     const [searchSection, setSearchSection] = useState("");
-    const [searchMessage, setSearchMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const [searchClicked, setSearchClicked] = useState(false);
-    const [resultsFetched, setResultsFetched] = useState(false); // Flag to track whether results have been fetched
+    const [resultsFetched, setResultsFetched] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -22,7 +24,6 @@ const SeenResult = () => {
             try {
                 const response = await axiosSecure.get("/results/publish");
                 if (response.data.length === 0) {
-                    // Show SweetAlert notification when results are not published
                     Swal.fire({
                         icon: 'error',
                         title: 'Results Not Published',
@@ -31,7 +32,7 @@ const SeenResult = () => {
                 } else {
                     setResults(response.data);
                 }
-                setResultsFetched(true);  
+                setResultsFetched(true);
             } catch (error) {
                 console.error("Error fetching results:", error);
             } finally {
@@ -41,17 +42,6 @@ const SeenResult = () => {
 
         fetchResults();
     }, [axiosSecure]);
-
-    useEffect(() => {
-        if (searchClass && searchSection && searchRoll && searchClicked && resultsFetched) {
-            const student = results.find(result =>
-                result.class === searchClass &&
-                result.section === searchSection &&
-                result.roll === searchRoll
-            );
-            setSelectedResult(student);
-        }
-    }, [searchClass, searchSection, searchRoll, results, searchClicked, resultsFetched]);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -64,23 +54,15 @@ const SeenResult = () => {
                 result.section === searchSection
             );
             if (filteredResults.length === 0) {
-                setSearchMessage("Student not found");
-                setSelectedResult(null);
-                // Show SweetAlert notification when student is not found
                 Swal.fire({
                     icon: 'error',
                     title: 'Student Not Found',
                     text: 'No student found with the given criteria!',
                 });
             } else {
-                setResults(filteredResults);
-                setSearchMessage("");
-                setSelectedResult(filteredResults[0]);
+                navigate('/show', { state: { selectedResults: filteredResults } }); // Navigate to PageResult
             }
         } else {
-            setSearchMessage("Please fill in all search criteria");
-            setSelectedResult(null);
-            // Show SweetAlert notification for incomplete search criteria
             Swal.fire({
                 icon: 'warning',
                 title: 'Incomplete Search Criteria',
@@ -155,64 +137,6 @@ const SeenResult = () => {
                 </div>
 
                 {loading && <p>Loading...</p>}
-
-                {/* Display search results only when search button is clicked */}
-                {selectedResult && searchClicked && (
-                    <div className="border mt-4 p-4">
-                        <p>Student Result:</p>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Father's Name</th>
-                                    <th>Mother's Name</th>
-                                    <th>Class</th>
-                                    <th>Roll</th>
-                                    <th>Section</th>
-                                    <th>Subject Grade Points</th>
-                                    <th>Subject Grade Letters</th>
-                                    <th>Average Grade Point</th>
-                                    <th>Total Grade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{selectedResult.name}</td>
-                                    <td>{selectedResult.fName}</td>
-                                    <td>{selectedResult.mName}</td>
-                                    <td>{selectedResult.class}</td>
-                                    <td>{selectedResult.roll}</td>
-                                    <td>{selectedResult.section}</td>
-                                    <td>
-                                        <ul>
-                                            {Object.entries(selectedResult.subjectGradePoints).map(([subject, points]) => (
-                                                <li key={subject}>{subject}: {points}</li>
-                                            ))}
-                                        </ul>
-                                    </td>
-                                    <td>
-                                        <ul>
-                                            {Object.entries(selectedResult.subjectGradeLetters).map(([subject, grade]) => (
-                                                <li key={subject}>{subject}: {grade}</li>
-                                            ))}
-                                        </ul>
-                                    </td>
-                                    <td>{selectedResult.averageGradePoint}</td>
-                                    <td>{selectedResult.totalGrade}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                )}
-
-                {/* Display search message */}
-                {searchMessage && searchClicked && <p>{searchMessage}</p>}
-
-                {/* Display message when results are not fetched yet */}
-                {!resultsFetched && searchClicked && (
-                    <p>Result is not published yet</p>
-                )}
-
             </div>
         </div>
     );

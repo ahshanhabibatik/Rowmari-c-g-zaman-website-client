@@ -31,6 +31,7 @@ import UserStudentInfo from "../Page/UserStudentInfo";
 import TotalStudent from "../Page/TotalStudent";
 import PublishedResult from "../AdminPanel/PublishedResult";
 import SeenResult from "../Page/SeenResult";
+import PageResult from "../Page/PageResult";
 
 
 
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
             {
                 path: "/result",
                 element: <SeenResult></SeenResult>,
+            },
+            {
+                path: "/show",
+                element: <PageResult></PageResult>,
             },
 
         ]

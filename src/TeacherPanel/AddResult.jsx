@@ -101,7 +101,7 @@ const AddResult = () => {
         let subjectGradePoints = {};
         let subjectGradeLetters = {}; // Object to store subject-wise grade letters
         let totalGradePoints = 0;
-        const subjects = ['bangla', 'english', 'math', 'history', 'health', 'Life', 'ArtAndCulture', 'Science', 'digital', 'ইসলাম'];
+        const subjects = ['bangla', 'english', 'math', 'history', 'health', 'life', 'art', 'science', 'digital', 'ইসলাম'];
 
         subjects.forEach(subject => {
             const marks = parseInt(data[subject]);
@@ -372,23 +372,23 @@ const AddResult = () => {
                                 <label className="label">
                                     <span className="label-text">জীবন ও জীবিকা</span>
                                 </label>
-                                <input type="number"  {...register("Life", { required: true })} name="Life" placeholder="Please Enter Number" className="input input-bordered" />
-                                {errors.email && <span className="text-red-600">Email is required</span>}
+                                <input type="number"  {...register("life", { required: true })} name="life" placeholder="Please Enter Number" className="input input-bordered" />
+                                {errors.life && <span className="text-red-600">Email is required</span>}
                             </div>
 
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">শিল্প ও সংস্কৃতি</span>
                                 </label>
-                                <input type="number"  {...register("ArtAndCulture", { required: true })} name="ArtAndCulture" placeholder="Please Enter Number" className="input input-bordered" />
-                                {errors.ArtAndCulture && <span className="text-red-600">Email is required</span>}
+                                <input type="number"  {...register("art", { required: true })} name="art" placeholder="Please Enter Number" className="input input-bordered" />
+                                {errors.art && <span className="text-red-600">Email is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">বিজ্ঞান</span>
                                 </label>
-                                <input type="number"  {...register("Science", { required: true })} name="Science" placeholder="Please Enter Number" className="input input-bordered" />
-                                {errors.email && <span className="text-red-600">Email is required</span>}
+                                <input type="number"  {...register("science", { required: true })} name="science" placeholder="Please Enter Number" className="input input-bordered" />
+                                {errors.science && <span className="text-red-600">Email is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">

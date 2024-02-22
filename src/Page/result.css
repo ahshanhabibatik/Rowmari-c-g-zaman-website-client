@@ -1,0 +1,11 @@
+ 
+.table-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.result-table {
+    width: 640px;
+    margin-top: 20px; 
+}
