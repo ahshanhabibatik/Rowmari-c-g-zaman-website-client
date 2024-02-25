@@ -44,6 +44,9 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         <NavLink to={'/dashboard/admit'}>
                             <FaHome /> Admit Card
                         </NavLink>
+                        <NavLink to={'/dashboard/seeAdmit'}>
+                            <FaHome /> Show Admit
+                        </NavLink>
 
                     </>
                 )}

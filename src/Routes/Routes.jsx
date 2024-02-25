@@ -2,8 +2,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
 
-
-
 import ErrorPage from "../Components/ErrorPage/ErrorPage";
 import Root from "../Layout/Root";
 import Home from "../Page/Home/Home";
@@ -31,8 +29,11 @@ import TotalStudent from "../Page/TotalStudent";
 import PublishedResult from "../AdminPanel/PublishedResult";
 import SeenResult from "../Page/SeenResult";
 import PageResult from "../Page/PageResult";
-import AdmitCard from "../AdminPanel/AdmitCard";
+
 import TeacherHome from "../TeacherPanel/TeacherHome";
+import CreateAdmitCard from "../AdminPanel/CreateAdmitCard";
+import ShowAdmitCard from "../AdminPanel/ShowAdmitCard";
+import UpdateAdmitCard from "../AdminPanel/UpdateAdmitCard";
 
 
 
@@ -145,7 +146,16 @@ const router = createBrowserRouter([
             },
             {
                 path: 'admit',
-                element: <AdmitCard></AdmitCard>
+                element: <CreateAdmitCard></CreateAdmitCard>
+            },
+            {
+                path: 'seeAdmit',
+                element: <ShowAdmitCard></ShowAdmitCard>
+            },
+            {
+                path: 'seeAdmit/updateAdmit/:id',
+                element: <UpdateAdmitCard></UpdateAdmitCard>,
+                loader: ({ params }) => fetch(`http://localhost:5001/admitPost/${params.id}`)
             },
 
             // TeacherDashboard
