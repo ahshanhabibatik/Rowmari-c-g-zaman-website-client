@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useAxiosSecure from "../Hook/AxiosSecure";
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2';
@@ -8,6 +8,8 @@ import { useQuery } from '@tanstack/react-query';
 
 const ShowAdmitCard = () => {
     const axiosSecure = useAxiosSecure();
+    const [AdmitPublic, setAdmitPublished] = useState(false);
+
 
     const { data: admitCardsClass6 = [], refetch: refetchClass6 } = useQuery({
         queryKey: ['admitCardsClass6'],
@@ -78,36 +80,32 @@ const ShowAdmitCard = () => {
 
 
 
-    const handlePublish = (admitCardId) => {
-        axiosSecure.put(`/admitPost/publish/${admitCardId}`)
-            .then(response => {
-                console.log(response.data.message);
-                // Show SweetAlert upon successful publishing
+    const handlePublishAdmitCards = () => {
+        axiosSecure.post('/Admit/publish')
+            .then(res => {
+                console.log(res.data);
+                setAdmitPublished(true);
                 Swal.fire({
-                    icon: 'success',
-                    title: 'Admit Card Published!',
-                    text: 'The admit card has been successfully published.',
+                    title: "Published!",
+                    text: "Admit cards have been published.",
+                    icon: "success"
                 });
             })
-            .catch(error => {
-                console.error("Error updating admit card role to published:", error);
+            .catch((error) => {
+                console.error("Error publishing admit cards:", error);
             });
     };
 
-    const handleUnpublish = (admitCardId) => {
-        axiosSecure.put(`/admitPost/unpublish/${admitCardId}`)
-            .then(response => {
-                console.log(response.data.message);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Admit Card Published!',
-                    text: 'The admit card has been successfully Unpublished.',
-                });
-            })
-            .catch(error => {
-                console.error("Error updating admit card role to unpublished:", error);
-            });
+    const handleDoubleClickPublishButton = () => {
+        Swal.fire({
+            title: "Admit Already Published!",
+            text: "Admit have already been published.",
+            icon: "warning"
+        });
     };
+
+
+
 
 
     const renderTable = (admitCards, refetch) => (
@@ -152,6 +150,9 @@ const ShowAdmitCard = () => {
 
     return (
         <div className='mb-6'>
+            <div className='flex justify-center'>
+                <button className='btn btn-primary mt-4'><Link to={"/dashBoard/publicAdmit"}>See Public Admit</Link></button>
+            </div>
             <h1 className="font-bold text-center">Admit Cards</h1>
             <div className="mt-4">
                 <h2 className="font-bold text-center">Class 6</h2>
@@ -174,8 +175,15 @@ const ShowAdmitCard = () => {
                 {renderTable(admitCardsClass10, refetchClass10)}
             </div>
 
-            <button onClick={handlePublish} className='btn btn-secondary flex mx-auto mt-3 font-bold'>Public Routine</button>
-            <button onClick={handleUnpublish} className='btn btn-secondary flex mx-auto mt-3 font-bold'>UnPublic Routine</button>
+            <div className="flex gap-3 mt-6 mx-auto justify-center">
+                <button
+                    className={`btn btn-primary  bottom-5 right-5 ${AdmitPublic ? "cursor-not-allowed" : ""}`}
+                    onClick={AdmitPublic ? handleDoubleClickPublishButton : handlePublishAdmitCards}
+                    disabled={AdmitPublic}
+                >
+                    Publish Admit Cards
+                </button>
+            </div>
         </div>
     );
 };

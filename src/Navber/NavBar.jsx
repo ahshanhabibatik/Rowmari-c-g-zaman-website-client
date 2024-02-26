@@ -40,7 +40,7 @@ const NavBar = () => {
                 <ul className={`dropdown-content lg:p-4 lg:w-[180px] ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
                     <li className='mb-2' ><NavLink to={'/allStu'}>All Students</NavLink></li>
                     <li className='mb-2'><NavLink to={'/total'}>Class Summary</NavLink></li>
-                    <li className='mb-2'><NavLink to={'/stuAdmit'}>Admit Card</NavLink></li>
+                    <li className='mb-2'><NavLink to={'/stuAdmit'}>Exam Routine</NavLink></li>
                 </ul>
             </li>
 

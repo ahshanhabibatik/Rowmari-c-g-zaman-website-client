@@ -34,6 +34,9 @@ import TeacherHome from "../TeacherPanel/TeacherHome";
 import CreateAdmitCard from "../AdminPanel/CreateAdmitCard";
 import ShowAdmitCard from "../AdminPanel/ShowAdmitCard";
 import UpdateAdmitCard from "../AdminPanel/UpdateAdmitCard";
+import PublicAdmit from "../AdminPanel/PublicAdmit";
+ 
+import ExamRoutine from "../Page/StuAdmitCard/ExamRoutine";
 
 
 
@@ -93,6 +96,10 @@ const router = createBrowserRouter([
             {
                 path: "/show",
                 element: <PageResult></PageResult>,
+            },
+            {
+                path: "/stuAdmit",
+                element: <ExamRoutine></ExamRoutine>,
             },
 
         ]
@@ -156,6 +163,10 @@ const router = createBrowserRouter([
                 path: 'seeAdmit/updateAdmit/:id',
                 element: <UpdateAdmitCard></UpdateAdmitCard>,
                 loader: ({ params }) => fetch(`http://localhost:5001/admitPost/${params.id}`)
+            },
+            {
+                path: 'publicAdmit',
+                element: <PublicAdmit></PublicAdmit>
             },
 
             // TeacherDashboard
