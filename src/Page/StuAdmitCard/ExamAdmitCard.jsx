@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import useAxiosPublic from "../../Hook/UseAxiosPublic";
 import NavBar from "../../Navber/NavBar";
+import Swal from "sweetalert2";
+import logo from '../../assets/slider/cgzaman logo (1).png'
+import { FaDownload } from "react-icons/fa";
+import { useReactToPrint } from 'react-to-print';
+
 
 const ExamAdmitCard = () => {
     const axiosPublic = useAxiosPublic();
@@ -11,6 +16,7 @@ const ExamAdmitCard = () => {
     const [loading, setLoading] = useState(true);
     const [routineData, setRoutineData] = useState([]);
     const [showData, setShowData] = useState(false);
+    const componentRef = useRef();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,7 +36,12 @@ const ExamAdmitCard = () => {
     const fetchRoutineData = async () => {
         try {
             const response = await axiosPublic.get("/Admit/publish");
-            // Filter routine data based on selected class, section, and roll
+            if (response.data.length === 0) {
+                Swal.fire("Cannot Publish Admit", "Admit data is not available.", "error");
+                setShowData(false);
+                return;
+            }
+
             const filteredRoutineData = response.data.filter(item => (
                 item.class === selectedClass
             ));
@@ -63,6 +74,11 @@ const ExamAdmitCard = () => {
     const firstTableSubjects = routineData.slice(0, 5);
     // Filter subjects for the second table (showing the remaining subjects)
     const secondTableSubjects = routineData.slice(5);
+
+
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current
+    });
 
     return (
         <div>
@@ -114,98 +130,131 @@ const ExamAdmitCard = () => {
                             className="input input-bordered"
                         />
                     </div>
-                    <button className="btn btn-primary mt-4" onClick={handleViewClick}>View</button>
+                    <button className="btn btn-primary mt-9" onClick={handleViewClick} disabled={!selectedClass || loading}>View</button>
                 </div>
             </div>
 
             {loading ? (
                 <p>Loading...</p>
             ) : showData ? (
-                <div className="w-[750px] mx-auto border">
-                    <div className='bg-[#330033] text-white py-5 '>
-                        <h1 className='text-center text-2xl font-bold'>Rowmari C.G Zaman High School,Rowmai,Kurigram</h1>
-                        <h2 className="text-xl font-bold text-center">Class: {selectedClass}</h2>
-                        {routineData.length > 0 && (
-                            <h2 className="text-xl font-bold text-center"> {routineData[0].exam}</h2>
-                        )}
-                        {routineData.length > 0 && (
-                            <h2 className="text-xl font-bold text-center">Exam Time: {routineData[0].exam_time} </h2>
-                        )}
-                        <h1 className="text-xl font-bold text-center">Admit Card</h1>
+                <div ref={componentRef} className="w-[750px] mx-auto border rounded-lg mt-8">
+                    <div className=' text-white py-2 flex justify-center'>
+                        <div className="bg-slate-100 rounded-l-lg">
+                            <img className="w-32" src={logo} alt="" />
+                        </div>
+                        <div className="bg-[#2462b9] p-1 border rounded-r-lg">
+                            <h1 className='text-center text-2xl font-bold mt-3'>Rowmari C.G Zaman High School,Rowmai,Kurigram</h1>
+
+                            {routineData.length > 0 && (
+                                <h2 className="text-xl font-bold text-center"> {routineData[0].exam}</h2>
+                            )}
+
+                            <h1 className="text-xl font-bold text-center uppercase">Admit Card</h1>
+                        </div>
                     </div>
                     {filteredStudents.length === 0 ? (
                         <p className="text-center">No data available</p>
                     ) : (
-                        <table className="mx-auto w-[700px]">
+                        <div>
+                            <h1 className="text-center font-bold text-2xl my-2 ">Student Information</h1>
+                            <table className="mx-auto w-[700px]">
 
-                            <tbody className="mx-auto w-[700px]">
-                                {filteredStudents.map((student, index) => (
-                                    <tr className="" key={index}>
-                                        <tr className="border ">
-                                            <th className="border text-center p-2">Roll</th>
-                                            <td className="border text-center">{student.roll}</td>
-                                            <th className="border text-center">Name</th>
-                                            <td className="border text-center">{student.name}</td>
-                                            <th className="border text-center">Name</th>
-                                            <td className="border text-center">{student.name}</td>
-                                        </tr>
-                                        <tr className="border ">
-                                            <th className="border text-center p-2">Roll</th>
-                                            <td className="border text-center">{student.roll}</td>
-                                            <th className="border text-center">Name</th>
-                                            <td className="border text-center">{student.name}</td>
-                                        </tr>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                <tbody>
+                                    {filteredStudents.map((student, index) => (
+                                        <React.Fragment key={index}>
+                                            <tr className="">
+                                                <th className="border w-20 bg-slate-100">Roll</th>
+                                                <td className="border w-20 text-center bg-slate-100">{student.roll}</td>
+                                                <th className="border bg-slate-100">Name</th>
+                                                <td className="border text-center bg-slate-100 p-2"> {student.name}</td>
+                                                <th className="border bg-slate-100">Section</th>
+                                                <td className="border bg-slate-100 text-center p-2"  > {student.section}</td>
+                                            </tr>
+                                            <tr>
+                                                <th className="border">Class</th>
+                                                <td className="border text-center p-2"  > {student.class}</td>
+                                                <th className="border">Father's Name</th>
+                                                <td className="border text-center p-2"  > {student.fName}</td>
+                                                <th className="border">Mother's Name</th>
+                                                <td className="border text-center p-2"  >{student.mName}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th className="border p-2 bg-slate-100">Examination</th>
+                                                <td className="border text-center p-2 w-24 bg-slate-100"  >{routineData[0].exam}</td>
+
+
+                                            </tr>
+                                        </React.Fragment>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     )}
-                    <div className="flex w-[700px] mx-auto">
-                        <div className="mx-auto ">
-                            <table className="mx-auto ">
-                                <thead>
-                                    <tr className="border text-center p-1">
-                                        <th className="border text-center p-1">Date</th>
-                                        <th className="border text-center p-1">Subject</th>
-                                        <th className="border text-center p-1">Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {firstTableSubjects.map((routine, index) => (
-                                        <tr key={index}>
-                                            <td className="border text-center p-1">{routine.date}</td>
-                                            <td className="border text-center p-1">{routine.subject}</td>
-                                            <td className="border text-center p-1">{routine.exam_time}</td>
+
+                    <div>
+                        <h1 className="text-2xl font-bold text-center my-2">Exam Routine</h1>
+                        <div className="flex w-[700px] mx-auto">
+
+                            <div className="mx-auto ">
+                                <table className="mx-auto w-[350px]">
+                                    <thead>
+                                        <tr className="border text-center p-1">
+                                            <th className="border text-center p-1 bg-slate-100">Date</th>
+                                            <th className="border text-center p-1">Subject</th>
+
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="mx-auto  ">
-                            <table className="mx-auto ">
-                                <thead>
-                                    <tr className="border text-center p-1">
-                                        <th className="border text-center p-1">Date</th>
-                                        <th className="border text-center p-1">Subject</th>
-                                        <th className="border text-center p-1">Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {secondTableSubjects.map((routine, index) => (
-                                        <tr key={index}>
-                                            <td className="border text-center p-1">{routine.date}</td>
-                                            <td className="border text-center p-1">{routine.subject}</td>
-                                            <td className="border text-center p-1">{routine.exam_time}</td>
+                                    </thead>
+                                    <tbody>
+                                        {firstTableSubjects.map((routine, index) => (
+                                            <tr key={index}>
+                                                <td className="border text-center p-1 bg-slate-100">{routine.date}</td>
+                                                <td className="border text-center p-1">{routine.subject}</td>
+
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div className="mx-auto">
+                                <table className="mx-auto w-[350px] ">
+                                    <thead>
+                                        <tr className="border text-center p-1">
+                                            <th className="border text-center p-1 bg-slate-100">Date</th>
+                                            <th className="border text-center p-1">Subject</th>
+
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {secondTableSubjects.map((routine, index) => (
+                                            <tr key={index}>
+                                                <td className="border text-center p-1 bg-slate-100">{routine.date}</td>
+                                                <td className="border text-center p-1">{routine.subject}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+                    </div>
+                    <div className="border w-[700px] mx-auto p-2">
+                        <p><li>Admit card must be brought to the exam hall.</li></p>
+                        <p><li>Must enter the exam hall 30 minutes before the start of the exam.</li></p>
+                    </div>
+                    <div className="border mt-4 h-16 w-[720px] mx-auto mb-3 bg-[#EEEEEE] rounded-lg">
+                        <p className="border w-[720px] h-5 rounded-t-lg bg-[#2462b9]">
+                            <span className="flex justify-center mt-7">©2011-2024 RCGZHS, All rights reserved.</span>
+                        </p>
                     </div>
                 </div>
             ) : (
                 <p className="text-red-500 text-xl text-center">Please select class, section, and roll to view student information.</p>
+
             )}
+
+            <div>
+                <button onClick={handlePrint} className="btn flex mx-auto mt-3"><FaDownload></FaDownload></button>
+            </div>
         </div>
     );
 };

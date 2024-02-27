@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import useAxiosPublic from "../../Hook/UseAxiosPublic";
 import NavBar from "../../Navber/NavBar";
 import "./stuAdmitCard.css";
 import { FaDownload } from 'react-icons/fa';
-import html2pdf from 'html2pdf.js';
+import { useReactToPrint } from 'react-to-print';
 
 const ExamRoutine = () => {
     const axiosPublic = useAxiosPublic();
     const [selectedClass, setSelectedClass] = useState(null);
     const [students, setStudents] = useState([]);
-    const [examInfo, setExamInfo] = useState(null); // State to hold exam information
+    const [examInfo, setExamInfo] = useState(null);
+    const componentRef = useRef();
 
     useEffect(() => {
         if (selectedClass !== null) {
-            // Fetch student data for the selected class
+
             axiosPublic.get(`/Admit/publish?classNumber=${selectedClass}`)
                 .then(response => {
                     if (response.data.length === 0) {
@@ -23,7 +24,7 @@ const ExamRoutine = () => {
                     }
                     setStudents(response.data);
 
-                    // Extract exam info from the first student's data (assuming all students have the same exam info)
+
                     if (response.data.length > 0) {
                         const { exam, shift, date, dayOfWeek, exam_time } = response.data[0];
                         setExamInfo({ exam, shift, date, dayOfWeek, exam_time });
@@ -36,18 +37,13 @@ const ExamRoutine = () => {
         }
     }, [selectedClass, axiosPublic]);
 
-    const handleDownloadPDF = () => {
-        const element = document.getElementById("routineSheet");
-        if (element) {
-            html2pdf().from(element).set({ padding: [0, 0, 0, 3] }).save("exam_routine.pdf");
-        } else {
-            toast.error('Could not find routine content to download');
-        }
-    };
 
-
-    // Filter students based on the selected class
     const filteredStudents = students.filter(student => student.class === selectedClass);
+
+
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current
+    });
 
     return (
         <div className="">
@@ -73,7 +69,7 @@ const ExamRoutine = () => {
             </div>
 
             {selectedClass && (
-                <div id="routineSheet" className='border w-[730px] mx-auto mt-6 noto-sans'>
+                <div id="routineSheet" className='border w-[730px] mx-auto mt-6 noto-sans' ref={componentRef}>
                     <div className='bg-[#330033] text-white py-5'>
                         <h1 className='text-center text-2xl font-bold'>Rowmari C.G Zaman High School,Rowmai,Kurigram</h1>
                         <h2 className="text-xl font-bold text-center">Class {selectedClass}  </h2>
@@ -88,7 +84,7 @@ const ExamRoutine = () => {
                         <table className="border-collapse border mx-auto">
                             <thead>
                                 <tr>
-                                    <th className="px-4 py-2 border">Shift</th>
+                                    <th className="px-4 py-2 border">Sl</th>
                                     <th className="px-4 py-2 border">Subject</th>
                                     <th className="px-4 py-2 border">Date</th>
                                     <th className="px-4 py-2 border">Day of Week</th>
@@ -96,9 +92,9 @@ const ExamRoutine = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredStudents.map(student => (
-                                    <tr key={student._id}>
-                                        <td className="border p-2">{student.shift}</td>
+                                {filteredStudents.map((student, index) => (
+                                    <tr key={index}>
+                                        <td className="border p-2">{index+1}</td>
                                         <td className="border p-2">{student.subject}</td>
                                         <td className="border p-2">{student.date}</td>
                                         <td className="border p-2">{student.dayOfWeek}</td>
@@ -117,7 +113,7 @@ const ExamRoutine = () => {
             )}
             <ToastContainer />
 
-            <button className='flex justify-center mx-auto mt-5 btn' onClick={handleDownloadPDF}><FaDownload /></button>
+            <button className='flex justify-center mx-auto mt-5 btn' onClick={handlePrint}><FaDownload /></button>
         </div>
     );
 };

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import NavBar from "../Navber/NavBar";
 import logo from '../../src/assets/slider/cgzaman logo (1).png';
-import html2pdf from "html2pdf.js";
+
 import './result.css'
+import { useReactToPrint } from "react-to-print";
 
 // Function to map English subject names to Bengali names and include subject numbers
 const mapSubjectToBengali = (subject, subjectNumber) => {
@@ -27,6 +28,7 @@ const mapSubjectToBengali = (subject, subjectNumber) => {
 const PageResult = () => {
     const location = useLocation();
     const selectedResults = location.state.selectedResults;
+    const componentRef = useRef();
 
     if (!selectedResults || selectedResults.length === 0) {
         return <div>No results found</div>;
@@ -34,17 +36,17 @@ const PageResult = () => {
 
     const studentData = selectedResults[0];
 
-    const downloadResultSheet = () => {
-        const element = document.getElementById("resultSheet");
-        html2pdf().from(element).save("result_sheet.pdf");
-    };
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current
+    });
+
 
     return (
         <div>
             <NavBar />
             <div>
-                <div id="resultSheet" className="border w-[700px]  mx-auto rounded-lg mt-10">
-                    <div className="border mt-3 w-[680px] mx-auto rounded-lg flex bg-[#330033]">
+                <div ref={componentRef} id="resultSheet" className="border w-[700px]  mx-auto rounded-lg mt-10">
+                    <div className="border w-[680px] mx-auto rounded-lg flex bg-[#330033]">
                         <div>
                             <img className="w-28 bg-[#EEEEEE]" src={logo} alt="" />
                         </div>
@@ -55,58 +57,58 @@ const PageResult = () => {
                             </div>
                         </div>
                     </div>
-                    <h1 className="text-center font-bold text-2xl my-3">Result Sheet</h1>
+                    <h1 className="text-center font-bold text-2xl my-2">Student Information</h1>
                     <table className="mx-auto w-[640px] align-middle bg-slate-50">
                         <tbody>
                             <tr className="border ">
-                                <th className="border text-center p-2">Roll</th>
+                                <th className="border text-center p-1">Roll</th>
                                 <td className="border text-center">{studentData.roll}</td>
-                                <th className="border text-center">Name</th>
+                                <th className="border text-center p-1">Name</th>
                                 <td className="border text-center">{studentData.name}</td>
                             </tr>
                             <tr>
-                                <th className="border text-center p-2">Class</th>
+                                <th className="border text-center p-1">Class</th>
                                 <td className="border text-center">{studentData.class}</td>
-                                <th className="border text-center">Father's Name</th>
+                                <th className="border text-center p-1">Father's Name</th>
                                 <td className="border text-center">{studentData.fName}</td>
                             </tr>
                             <tr>
-                                <th className="border text-center p-2">Date of Birth</th>
+                                <th className="border text-center p-1">Date of Birth</th>
                                 <td className="border text-center">{studentData.dateOfBirth}</td>
-                                <th className="border text-center">Mother's Name</th>
+                                <th className="border text-center p-1">Mother's Name</th>
                                 <td className="border text-center">{studentData.mName}</td>
                             </tr>
                             <tr>
-                                <th className="border text-center p-2">Total Grade</th>
+                                <th className="border text-center p-1">Total Grade</th>
                                 <td className="border  font-bold text-center">{studentData.totalGrade}</td>
-                                <th className="border text-center p-2">GPA</th>
+                                <th className="border text-center p-1">GPA</th>
                                 <td className="border  font-bold text-center">{studentData.averageGradePoint}</td>
                             </tr>
 
                             <tr>
-                                <th className="border text-center p-2">Total Number</th>
+                                <th className="border text-center p-1">Total Number</th>
                                 <td className="border  font-bold text-center">{studentData.totalMarks}</td>
                             </tr>
                         </tbody>
                     </table>
 
                     {/* Grade Sheet Table */}
-                    <h2 className="text-center my-3 font-bold text-2xl">Grade Sheet:</h2>
+                    <h2 className="text-center my-2 font-bold text-2xl">Grade Sheet:</h2>
                     <div className="flex justify-center ">
-                        <table className="mt-4 mb-4 mx-auto w-[640px] align-middle bg-slate-50" style={{ tableLayout: "fixed" }}>
+                        <table className="mx-auto w-[640px] align-middle bg-slate-50">
                             <thead>
                                 <tr>
-                                    <th className="border text-center p-2" style={{ width: "10%" }}>Sl</th>
-                                    <th className="border text-center p-2" style={{ width: "30%" }}>Subject</th>
-                                    <th className="border text-center p-2" style={{ width: "20%" }}>Subject Number</th>
-                                    <th className="border text-center p-2" style={{ width: "20%" }}>Grade Letter</th>
-                                    <th className="border text-center p-2" style={{ width: "20%" }}>Grade Points</th>
+                                    <th className="border text-center p-1">Sl</th>
+                                    <th className="border text-center " >Subject</th>
+                                    <th className="border text-center"  >Subject Number</th>
+                                    <th className="border text-center">Grade Letter</th>
+                                    <th className="border text-center" >Grade Points</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {studentData.subjectGradeLetters && Object.keys(studentData.subjectGradeLetters).map((subject, index) => (
                                     <tr key={index}>
-                                        <td className="border text-center p-2">{index + 1}</td>
+                                        <td className="border text-center p-1">{index + 1}</td>
                                         <td className="border text-center ">{mapSubjectToBengali(subject, studentData).name}</td>
                                         <td className="border text-center">{mapSubjectToBengali(subject, studentData).number}</td>
                                         <td className="border text-center">{studentData.subjectGradeLetters[subject]}</td>
@@ -128,7 +130,7 @@ const PageResult = () => {
 
                 </div>
 
-                <button onClick={downloadResultSheet} className="btn btn-secondary flex  mt-3 mx-auto">Download Result</button>
+                <button onClick={handlePrint} className="btn btn-secondary flex  mt-3 mx-auto">Download Result</button>
             </div>
         </div>
     );

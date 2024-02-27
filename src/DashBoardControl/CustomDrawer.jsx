@@ -16,7 +16,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
             <li id='sidebar '>
                 {isAdmin && (
                     <>
-                        <NavLink to={'/dashboard/home'}>
+                        <NavLink to={'/dashboard'}>
                             <FaHome /> Admin Home
                         </NavLink>
                         <NavLink to={'/dashboard/users'}>
