@@ -41,6 +41,7 @@ const NavBar = () => {
                     <li className='mb-2' ><NavLink to={'/allStu'}>All Students</NavLink></li>
                     <li className='mb-2'><NavLink to={'/total'}>Class Summary</NavLink></li>
                     <li className='mb-2'><NavLink to={'/stuAdmit'}>Exam Routine</NavLink></li>
+                    <li className='mb-2'><NavLink to={'/admit'}>Admit Card</NavLink></li>
                 </ul>
             </li>
 

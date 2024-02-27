@@ -35,8 +35,9 @@ import CreateAdmitCard from "../AdminPanel/CreateAdmitCard";
 import ShowAdmitCard from "../AdminPanel/ShowAdmitCard";
 import UpdateAdmitCard from "../AdminPanel/UpdateAdmitCard";
 import PublicAdmit from "../AdminPanel/PublicAdmit";
- 
+
 import ExamRoutine from "../Page/StuAdmitCard/ExamRoutine";
+import ExamAdmitCard from "../Page/StuAdmitCard/ExamAdmitCard";
 
 
 
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
             {
                 path: "/stuAdmit",
                 element: <ExamRoutine></ExamRoutine>,
+            },
+            {
+                path: "/admit",
+                element: <ExamAdmitCard></ExamAdmitCard>,
             },
 
         ]
