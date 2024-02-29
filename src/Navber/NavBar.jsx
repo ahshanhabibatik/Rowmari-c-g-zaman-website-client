@@ -25,9 +25,9 @@ const NavBar = () => {
 
             <li className="dropdown">
                 <button className="dropbtn">About Us</button>
-                <ul className={`dropdown-content lg:p-4 lg:w-28 ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
-                    <li className='mb-2'><NavLink to={'/about'}>Vision</NavLink></li>
-                    <li><NavLink to={'/total'}>Mission</NavLink></li>
+                <ul className={`dropdown-content lg:w-28 ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
+                    <li className='hover:bg-teal-400 border'><NavLink to={'/about'}>Vision</NavLink></li>
+                    <li className='hover:bg-teal-400 border '><NavLink to={'/total'}>Mission</NavLink></li>
                 </ul>
             </li>
 
@@ -37,11 +37,11 @@ const NavBar = () => {
 
             <li className="dropdown">
                 <button className="dropbtn">Student</button>
-                <ul className={`dropdown-content lg:p-4 lg:w-[180px] ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
-                    <li className='mb-2' ><NavLink to={'/allStu'}>All Students</NavLink></li>
-                    <li className='mb-2'><NavLink to={'/total'}>Class Summary</NavLink></li>
-                    <li className='mb-2'><NavLink to={'/stuAdmit'}>Exam Routine</NavLink></li>
-                    <li className='mb-2'><NavLink to={'/admit'}>Admit Card</NavLink></li>
+                <ul className={`dropdown-content   lg:w-[180px] ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
+                    <li className=' hover:bg-teal-400 border' ><NavLink to={'/allStu'}>All Students</NavLink></li>
+                    <li className='hover:bg-teal-400 border '><NavLink to={'/total'}>Class Summary</NavLink></li>
+                    <li className=' hover:bg-teal-400 border'><NavLink to={'/stuAdmit'}>Exam Routine</NavLink></li>
+                    <li className='hover:bg-teal-400 border '><NavLink to={'/admit'}>Admit Card</NavLink></li>
                 </ul>
             </li>
 
@@ -73,7 +73,7 @@ const NavBar = () => {
                         </div>
                     </div>
                     <div className="navbar-center hidden lg:flex">
-                        <ul className="flex gap-5 menu-horizontal px-1 text-xl">
+                        <ul id="sidebar" className="flex gap-5 menu-horizontal px-1 text-xl">
                             {navOptions}
                         </ul>
                     </div>

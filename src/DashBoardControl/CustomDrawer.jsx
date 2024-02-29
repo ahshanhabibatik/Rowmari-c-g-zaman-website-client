@@ -13,6 +13,9 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
         className=' w-64 '
     >
         <ul className="menu  bg-[#74189c] h-full text-white ">
+            <div>
+                 
+            </div>
             <li id='sidebar '>
                 {isAdmin && (
                     <>
@@ -40,7 +43,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         <NavLink to={'/dashboard/adNews'}>
                             <FaHome /> Upload News
                         </NavLink>
-                        
+
                         <NavLink to={'/dashboard/admit'}>
                             <FaHome /> Admit Card
                         </NavLink>

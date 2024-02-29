@@ -7,7 +7,7 @@
 
 .marquee {
     position: absolute;
-    animation: marquee 20s linear infinite;
+    animation: marquee 15s linear infinite;
 }
 
 @keyframes marquee {
@@ -24,19 +24,19 @@
 .animate-charcter {
     text-transform: uppercase;
     background-image: linear-gradient(-225deg,
-            #14b459 0%,
-            #eadb07 29%,
-            #ff1361 67%,
-            #fff800 100%);
+            #0f110c 0%,
+            #0e390e 29%,
+            #069725 67%,
+            #081e8c 100%);
     background-size: auto auto;
     background-clip: border-box;
     background-size: 50% auto;
-    color: #fff;
+    color: #02180b;
     background-clip: text;
     text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: textclip 10s linear infinite;
+    animation: textclip 20s linear infinite;
     display: inline-block;
     font-size: 30px;
 }
@@ -59,4 +59,18 @@
         url('SolaimanLipi.eot?#iefix') format('embedded-opentype');
     font-weight: normal;
     font-style: normal;
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+.merriweather-regular {
+    font-family: "Merriweather", serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.bg {
+    background: radial-gradient(circle at 10% 20%, rgb(242, 242, 119) 0%, rgb(229, 236, 6) 90%);
 }
