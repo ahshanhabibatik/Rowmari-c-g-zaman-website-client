@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile, deleteUser } from "firebase/auth"; // Import deleteUser function
 import app from "../Firebase/firebase.config";
 
 const provider = new GoogleAuthProvider();
@@ -35,6 +35,11 @@ const AuthProvider = ({ children }) => {
     const googleLogin = () => {
         setLoading(true);
         return signInWithPopup(auth, provider)
+    };
+
+    const deleteUserAccount = (email) => { // Rename function to avoid conflicts
+        setLoading(true);
+        return deleteUser(auth.currentUser); // Use deleteUser function from firebase/auth directly
     }
 
     useEffect(() => {
@@ -55,7 +60,8 @@ const AuthProvider = ({ children }) => {
         signIn,
         logOut,
         updateUserProfile,
-        googleLogin
+        googleLogin,
+        deleteUser: deleteUserAccount // Use the renamed function
     }
 
     return (

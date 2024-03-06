@@ -43,7 +43,8 @@ import Mision from "../Vision/Mision";
 import Experience from "../Page/Experience/Experience";
 import Teacher from "../Page/TeacherPage/Teacher";
 import UploadResult from "../AdminPanel/UploadResult";
- 
+import ForgetPassword from "../Login/ForgetPassword";
+
 
 
 
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
                 path: "/allTeacher",
                 element: <Teacher></Teacher>,
             },
+            {
+                path: "/forget",
+                element: <ForgetPassword></ForgetPassword>,
+            },
 
         ]
     },
@@ -199,7 +204,7 @@ const router = createBrowserRouter([
                 path: 'ssc',
                 element: <UploadResult></UploadResult>
             },
-            
+
 
             // TeacherDashboard
             {

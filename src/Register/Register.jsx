@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import useAxiosPublic from "../Hook/UseAxiosPublic";
 import { AuthContext } from "../Provider/AuthProvider";
-
+ 
 
 
 const Register = () => {
@@ -17,8 +17,8 @@ const Register = () => {
 
         createUser(data.email, data.password)
             .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
+                console.log(result.user)
+                
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
                         // create user entry in the database
@@ -39,7 +39,7 @@ const Register = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
-                                    navigate('/');
+                                    navigate('/login');
                                 }
                             })
 

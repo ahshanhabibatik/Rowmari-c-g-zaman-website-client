@@ -6,12 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import { AuthContext } from "../Provider/AuthProvider";
+import { sendEmailVerification } from "firebase/auth";
+
 
 const Login = () => {
     const { signIn } = useContext(AuthContext);
     const location = useLocation();
     const [registerError, setRegisterError] = useState('');
     const navigate = useNavigate();
+
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -32,9 +35,21 @@ const Login = () => {
         try {
             // Perform Firebase authentication
             const result = await signIn(email, password);
-            console.log(result.user);
-            navigate(location?.state ? location.state : '/');
-            toast.success('Successfully logged in!');
+            if (result.user?.emailVerified) {
+                navigate(location?.state ? location.state : '/');
+            }
+            else {
+                alert("verify your email address")
+                sendEmailVerification(result.user)
+                    .then(() => {
+                        alert("Please Check your email and verify your email")
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    })
+            }
+
+
         } catch (error) {
             console.error(error);
             toast.error('Login failed. Please check your email and password.');
@@ -55,6 +70,8 @@ const Login = () => {
         });
     }, []);
 
+
+
     return (
         <div>
 
@@ -72,7 +89,11 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text text-gray-600font-bold">Email address</span>
                                 </label>
-                                <input type="email" name="email" placeholder="Enter Email" className="input input-bordered" required />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter Email"
+                                    className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -96,7 +117,9 @@ const Login = () => {
                                     </span>
                                 </div>
                                 <label className="label">
-                                    <a href="#" className="label-text-alt text-gray-600 font-bold link link-hover">Forgot password?</a>
+                                    <Link to={'/forget'}>
+                                        <a href="#" className="label-text-alt text-gray-600 font-bold link link-hover">Forgot password?</a>
+                                    </Link>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
