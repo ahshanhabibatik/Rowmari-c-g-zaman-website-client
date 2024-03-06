@@ -27,7 +27,7 @@ const TotalStudent = () => {
         <div>
             <NavBar />
             <div className="flex mt-3">
-                <h1 className="animate-charter font-bold mx-auto">Student Summary</h1>
+                <h1 className="titleStyle font-bold mx-auto">Student Summary</h1>
             </div>
             <div className="container mx-auto">
                 {loading ? (
@@ -57,7 +57,7 @@ const TotalStudent = () => {
                                         ))}
                                         <tr>
                                             <td className="border   border-gray-800 p-2 font-bold text-end" colSpan="4">
-                                            Total Student of Morning Shift: {totalStudentData[0]["Morning Shift"]["Total Students"]}
+                                                Total Student of Morning Shift: {totalStudentData[0]["Morning Shift"]["Total Students"]}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -91,20 +91,21 @@ const TotalStudent = () => {
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div className="border h-14 mx-auto mt-6 bg-[#330033] rounded-md mb-8">
+
+                                    {totalStudentData && (
+                                        <div className="text-center text-white mt-2 text-2xl">
+                                            <p className="font-bold">Total Students: {totalStudentData[0]["Total Students"]}</p>
+                                        </div>
+                                    )}
+
+                                </div>
                             </div>
                         </div>
                     )
                 )}
             </div>
-            <div className="border lg:w-[800px] w-full h-12 mx-auto mt-6 bg-[#330033] rounded-md">
 
-                {totalStudentData && (
-                    <div className="text-center text-white mt-1 text-2xl">
-                        <p className="font-bold">Total Students: {totalStudentData[0]["Total Students"]}</p>
-                    </div>
-                )}
-
-            </div>
         </div>
     );
 };

@@ -17,3 +17,11 @@
     display: inline-block;
 
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap');
+
+
+.roboto-slab{
+    font-family: "Roboto Slab", serif;
+    
+  }

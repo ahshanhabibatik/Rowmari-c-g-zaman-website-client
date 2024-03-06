@@ -38,6 +38,12 @@ import PublicAdmit from "../AdminPanel/PublicAdmit";
 
 import ExamRoutine from "../Page/StuAdmitCard/ExamRoutine";
 import ExamAdmitCard from "../Page/StuAdmitCard/ExamAdmitCard";
+import Vision from "../Vision/Vision";
+import Mision from "../Vision/Mision";
+import Experience from "../Page/Experience/Experience";
+import Teacher from "../Page/TeacherPage/Teacher";
+import UploadResult from "../AdminPanel/UploadResult";
+ 
 
 
 
@@ -106,6 +112,22 @@ const router = createBrowserRouter([
                 path: "/admit",
                 element: <ExamAdmitCard></ExamAdmitCard>,
             },
+            {
+                path: "/vision",
+                element: <Vision></Vision>,
+            },
+            {
+                path: "/mission",
+                element: <Mision></Mision>,
+            },
+            {
+                path: "/experience",
+                element: <Experience></Experience>,
+            },
+            {
+                path: "/allTeacher",
+                element: <Teacher></Teacher>,
+            },
 
         ]
     },
@@ -173,6 +195,11 @@ const router = createBrowserRouter([
                 path: 'publicAdmit',
                 element: <PublicAdmit></PublicAdmit>
             },
+            {
+                path: 'ssc',
+                element: <UploadResult></UploadResult>
+            },
+            
 
             // TeacherDashboard
             {

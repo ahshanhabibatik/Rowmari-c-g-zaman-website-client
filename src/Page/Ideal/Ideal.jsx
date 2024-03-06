@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import '../Ideal/Ideal.css';
- 
+
 
 
 const Ideal = () => {
@@ -14,25 +14,32 @@ const Ideal = () => {
             <div className="grid grid-cols-4 gap-6  ">
                 <div className="border rounded-lg bg-[#F1F3F5] px-2 py-3 gap-4 space-y-2" >
                     <h1 className="text-2xl font-bold">Our Experience</h1>
-                    <p>Upcoming </p>
-                    <Link>Learn More..</Link>
+                    <p>Rowmari C. G. Zaman High School encompasses...</p>
+
+                    <Link to={'/experience'}><button className="border px-2 py-1 mt-1 rounded-lg border-black hover:bg-slate-400">Load More..</button></Link>
                 </div>
                 <div className="border rounded-lg bg-[#F1F3F5] px-2 py-3 space-y-2">
                     <h1 className="text-2xl font-bold">Experience Teacher</h1>
-                    <h1>Upcoming</h1>
-                    <Link>Learn More..</Link>
+                    <h1>The experience of teachers at Rowmari C. G. Zaman High School....</h1>
+                    <Link to={'/allTeacher'}><button className="border px-2 py-1 mt-1 rounded-lg border-black hover:bg-slate-400">Load More..</button></Link>
                 </div>
+
+
                 <div className="border rounded-lg bg-[#F1F3F5] px-2 py-3 space-y-2">
                     <h1 className="text-2xl font-bold">Smart Classroom</h1>
                     <h1>Upcoming</h1>
                     <Link>Learn More..</Link>
                 </div>
+                
                 <div className="border rounded-lg bg-[#F1F3F5] px-2 py-3 space-y-2">
                     <h1 className="text-2xl font-bold">AWARD</h1>
                     <h1>Upcoming</h1>
                     <Link>Click More..</Link>
                 </div>
             </div>
+
+
+
 
             <div className="ideal-container mt-8"  >
                 <div className=" ">

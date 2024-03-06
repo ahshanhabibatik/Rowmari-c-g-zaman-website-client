@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useLoaderData, useParams } from "react-router-dom";
+import {  useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
@@ -35,6 +35,7 @@ const UpdateStudentInfo = () => {
 
     return (
         <div>
+            
             <h1 className="font-bold text-3xl text-center mt-6 mb-6 uppercase">Update Student Information</h1>
             <div className=" lg:w-[600px] mx-auto bg-slate-300">
                 <form className="lg:w-[600px] mx-auto bg-slate-300 card-body" onSubmit={handleSubmit(onSubmit)}>
@@ -52,14 +53,14 @@ const UpdateStudentInfo = () => {
                                     <span className="label-text">Father Name</span>
                                 </label>
                                 <input defaultValue={data.fName} type="text"  {...register("fName", { required: true })} name="fName" placeholder="Enter Father Name" className="input input-bordered" />
-                                
+
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Mother Name</span>
                                 </label>
                                 <input defaultValue={data.mName} type="text"  {...register("mName", { required: true })} name="mName" placeholder="Enter Mother Name" className="input input-bordered" />
-                                
+
                             </div>
 
                             <div className="form-control">

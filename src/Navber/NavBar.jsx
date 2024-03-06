@@ -26,13 +26,21 @@ const NavBar = () => {
             <li className="dropdown">
                 <button className="dropbtn">About Us</button>
                 <ul className={`dropdown-content lg:w-28 ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
-                    <li className='hover:bg-teal-400 border'><NavLink to={'/about'}>Vision</NavLink></li>
-                    <li className='hover:bg-teal-400 border '><NavLink to={'/total'}>Mission</NavLink></li>
+                    <li className='hover:bg-teal-400 border'><NavLink to={'/vision'}>Vision</NavLink></li>
+                    <li className='hover:bg-teal-400 border '><NavLink to={'/mission'}>Mission</NavLink></li>
                 </ul>
             </li>
 
             <li>
-                <NavLink to={'/teacherInfo'} >Teacher Information</NavLink>
+                <li className="dropdown">
+                    <button className="dropbtn">Teacher</button>
+                    <ul className={`dropdown-content   lg:w-[180px] ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
+                        <li className=' hover:bg-teal-400 border' ><NavLink to={'/allStu'}>Former Headteachers</NavLink></li>
+                        <li className='hover:bg-teal-400 border '><NavLink to={'/total'}>Head Teacher</NavLink></li>
+                        <li className=' hover:bg-teal-400 border'><NavLink to={'/allTeacher'}>All Teacher</NavLink></li>
+                         
+                    </ul>
+                </li>
             </li>
 
             <li className="dropdown">
