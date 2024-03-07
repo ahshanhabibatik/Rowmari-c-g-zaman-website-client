@@ -1,5 +1,6 @@
 import NavBar from "../Navber/NavBar";
 import './vision.css'
+import Typewriter from 'typewriter-effect';
 
 
 
@@ -13,7 +14,16 @@ const Vision = () => {
 
             <div className="bg-[#1B1A55] text-white lg:h-96">
                 <div className="flex mx-auto justify-center">
-                    <h1 className="titleStyle mt-3 shadow-lg roboto-slab">School Vision</h1>
+                    <div className='typewrite '>
+                        <Typewriter
+                            options={{
+                                strings: [
+                                    'School Vision',
+                                    'Rowmari C G Zaman High School Vision', 'School Goal'],
+                                autoStart: true,
+                                loop: true,
+                            }} />
+                    </div>
                 </div>
 
                 <p className="border lg:w-[1100px] text-justify px-3 py-2 mx-auto rounded-lg mt-3 roboto-slab">The vision statement of Rowmari C. G. Zaman High School outlines its aspirations and long-term goals, reflecting its commitment to excellence in education and holistic development of its students. Here's a possible vision statement for the school:

@@ -10,6 +10,7 @@ import NavBar from "../../Navber/NavBar";
 import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hook/UseAxiosPublic";
 import './home.css'
+import HomeScc from "../SscConner/HomeScc";
 
 
 const Home = () => {
@@ -98,7 +99,9 @@ const Home = () => {
             <div>
                 <Ideal></Ideal>
             </div>
-
+            <div>
+                <HomeScc></HomeScc>
+            </div>
             <div>
                 <Media></Media>
             </div>

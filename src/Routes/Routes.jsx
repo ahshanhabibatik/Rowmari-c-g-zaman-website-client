@@ -44,6 +44,7 @@ import Experience from "../Page/Experience/Experience";
 import Teacher from "../Page/TeacherPage/Teacher";
 import UploadResult from "../AdminPanel/UploadResult";
 import ForgetPassword from "../Login/ForgetPassword";
+import SScConner from "../Page/SscConner/SScConner";
 
 
 
@@ -132,6 +133,10 @@ const router = createBrowserRouter([
             {
                 path: "/forget",
                 element: <ForgetPassword></ForgetPassword>,
+            },
+            {
+                path: "/ssc",
+                element: <SScConner></SScConner>,
             },
 
         ]

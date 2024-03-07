@@ -38,7 +38,7 @@ const NavBar = () => {
                         <li className=' hover:bg-teal-400 border' ><NavLink to={'/allStu'}>Former Headteachers</NavLink></li>
                         <li className='hover:bg-teal-400 border '><NavLink to={'/total'}>Head Teacher</NavLink></li>
                         <li className=' hover:bg-teal-400 border'><NavLink to={'/allTeacher'}>All Teacher</NavLink></li>
-                         
+
                     </ul>
                 </li>
             </li>
@@ -56,6 +56,19 @@ const NavBar = () => {
             <li>
                 <NavLink to={'/result'} >Result</NavLink>
             </li>
+
+            <li>
+                <li className="dropdown">
+                    <button className="dropbtn">Administration</button>
+                    <ul className={`dropdown-content   lg:w-[180px] ${isMenuOpen ? 'block' : 'hidden md:block'}`}>
+                        <li className=' hover:bg-teal-400 border' ><NavLink to={'/ssc'}>Ssc Result</NavLink></li>
+                        <li className='hover:bg-teal-400 border '><NavLink to={'/total'}>Head Teacher</NavLink></li>
+                        <li className=' hover:bg-teal-400 border'><NavLink to={'/allTeacher'}>All Teacher</NavLink></li>
+
+                    </ul>
+                </li>
+            </li>
+
 
             {(isAdmin || isTeacher) && (
                 <li>
