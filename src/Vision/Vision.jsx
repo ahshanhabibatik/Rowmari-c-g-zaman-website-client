@@ -14,15 +14,8 @@ const Vision = () => {
 
             <div className="bg-[#1B1A55] text-white lg:h-96">
                 <div className="flex mx-auto justify-center">
-                    <div className='typewrite '>
-                        <Typewriter
-                            options={{
-                                strings: [
-                                    'School Vision',
-                                    'Rowmari C G Zaman High School Vision', 'School Goal'],
-                                autoStart: true,
-                                loop: true,
-                            }} />
+                    <div className="flex mx-auto justify-center">
+                        <h1 className="titleStyle mt-3 shadow-lg roboto-slab">School Vision</h1>
                     </div>
                 </div>
 

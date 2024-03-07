@@ -39,12 +39,14 @@ const HomeScc = () => {
                 {sscData.slice(0, 6).map((result, index) => (
                     <div key={index} className={`mb-2 border p-2 rounded-lg ${index % 2 === 0 ? 'bg-slate-300' : 'bg-gray-300'}`} data-aos="fade-up">
                         <div className="flex items-center gap-2">
-                            <span className="mt-[2px]">
-                                <CiViewTimeline />
-                            </span>
-                            <a href={result.link} target="_blank" rel="noopener noreferrer">
-                                {result.description}
-                            </a>
+                             
+                                <CiViewTimeline  className="mt-[3px]"/>
+                             
+                            <div>
+                                <a href={result.link} target="_blank" rel="noopener noreferrer">
+                                    {result.description}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 ))}

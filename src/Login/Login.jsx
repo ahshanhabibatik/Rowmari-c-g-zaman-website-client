@@ -78,28 +78,28 @@ const Login = () => {
 
             <hr />
             <ToastContainer position="top-center" autoClose={3000} />
-            <div data-aos="fade-up" className=" lg:flex lg:py-11 bg-white bg-opacity-30 lg:w-[70%] w-[80%] border mx-auto mt-4 lg:my-20 rounded-lg  px-8 lg:gap-4 ">
+            <div data-aos="fade-up" className=" lg:flex lg:py-11 bg-white bg-opacity-30 lg:w-[70%] w-[80%] border mx-auto mt-4 lg:my-14 rounded-lg  px-8 lg:gap-4 ">
                 <div className=" lg:block hidden">
                     <img className="w-96 lg:-mt-5 " src="https://i.ibb.co/0skLXNf/login-account-vector-illustration-laptop-isolated-background-password-sign-concept-993513-273.png" alt="" />
                 </div>
                 <div className="lg:w-96  ">
 
                     <div className="">
-                        <h1 className="text-2xl  font-bold text-center text-white uppercase mb-5">User Login</h1>
+                        <h1 className="text-2xl  font-bold text-center text-white uppercase mb-4">User Login</h1>
                         <form onSubmit={handleLogin} className=" md:w-96 lg:w-3/4 mx-auto">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-white font-bold mb-4">Email address</span>
+                                    <span className="label-text text-white font-bold mb-2">Email address</span>
                                 </label>
                                 <input
                                     type="email"
                                     name="email"
                                     placeholder="Enter Email"
-                                    className="input input-bordered mb-4" required />
+                                    className="input input-bordered mb-2" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text text-white font-bold mb-4">Password</span>
+                                    <span className="label-text text-white font-bold mb-2">Password</span>
                                 </label>
                                 <div className=" relative flex  justify-end ">
                                     <input
@@ -110,7 +110,7 @@ const Login = () => {
                                         required
 
                                     />
-                                    <span className=" text-2xl mt-3  pr-3">
+                                    <span className=" text-2xl mt-3 absolute pr-3">
                                         {showPassword ? (
                                             <FaEyeSlash onClick={togglePasswordVisibility} className="text-gray-400  cursor-pointer" />
                                         ) : (
@@ -124,7 +124,7 @@ const Login = () => {
                                     </Link>
                                 </label>
                             </div>
-                            <div className="form-control mt-4">
+                            <div className="form-control mt-2">
                                 <button className="border py-2 uppercase font-bold rounded-lg text-white border-white hover:bg-cyan-400">Login</button>
                             </div>
                         </form>

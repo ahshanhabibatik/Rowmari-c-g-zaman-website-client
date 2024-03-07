@@ -2,6 +2,8 @@ import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { useRef } from "react";
 import app from "../Firebase/firebase.config";
 import { Link } from "react-router-dom";
+import './login.css'
+
 
 
 const ForgetPassword = () => {
@@ -27,21 +29,25 @@ const ForgetPassword = () => {
             })
     }
     return (
-        <div className="w-96 mx-auto h-[100vh] my-10">
-            <div className="form-control">
-                <label className="label">
-                    <span className="label-text text-gray-600 font-bold ">Please Enter Valid Email address</span>
-                </label>
-                <input
-                    type="email"
-                    name="email"
-                    ref={emailRef}
-                    placeholder="Enter Valid Email"
-                    className="input input-bordered" required />
-            </div>
-            <button onClick={handleForgetPassword} className="btn btn-primary flex justify-center mx-auto mt-6">Submit</button>
+        <div >
 
-            <Link to={'/login'}><button className="btn flex mx-auto mt-6">Go to login</button></Link>
+            <div className="background h-96 py-7">
+                <div className=" border mx-auto md:w-[500px] py-12 rounded-lg bg-white bg-opacity-20">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text  flex mx-auto text-white font-bold ">Please Enter Valid Email address</span>
+                        </label>
+                        <input
+                            type="email"
+                            name="email"
+                            ref={emailRef}
+                            placeholder="Enter Valid Email"
+                            className="input input-bordered md:w-96 flex mx-auto" required />
+                    </div>
+                    <button onClick={handleForgetPassword} className="btn btn-primary flex justify-center mx-auto mt-6">Submit</button>
+                </div>
+                <Link to={'/login'}><button className="btn flex mx-auto mt-6">Go to login</button></Link>
+            </div>
         </div>
     );
 };

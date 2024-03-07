@@ -181,7 +181,7 @@ const ExamAdmitCard = () => {
                                             </tr>
                                             <tr>
                                                 <th className="border p-2 bg-slate-100">Examination</th>
-                                                <td className="border text-center p-2 w-24 bg-slate-100"  >{routineData[0].exam}</td>
+                                                <td colSpan={2} className="border text-center p-2 w-24 bg-slate-100"  >{routineData[0].exam}</td>
 
 
                                             </tr>
