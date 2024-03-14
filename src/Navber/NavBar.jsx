@@ -31,7 +31,8 @@ const NavBar = () => {
     }
 
     return (
-        <div className='roboto-regular'>
+        <div className='roboto-regular '>
+            <hr className='' />
             <div className={isResponsive ? "topnav responsive" : "topnav"}
                 id="myTopnav">
 

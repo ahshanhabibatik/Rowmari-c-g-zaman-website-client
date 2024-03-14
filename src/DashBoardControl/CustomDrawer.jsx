@@ -5,21 +5,26 @@ import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
 import "./custom.css"
 
-const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
+
+const CustomDrawer = ({ isAdmin, isTeacher, isUser, isOpen, onClose }) => (
+
     <Drawer
         open={isOpen}
         onClose={onClose}
         direction='left'
         className=' w-64 '
     >
-        <ul className="menu  bg-[#74189c] h-full text-white ">
-            <div>
-                 
+        <ul className="menu bg-[#54085e] h-full text-white overflow-y-auto">
+            <div className='text-center'>
+                <h1 className='uppercase text-2xl'>Welcome RCGZHS</h1>
+                <span className=' uppercase'>DashBoard</span>
+
+                <hr className='my-1' />
             </div>
             <li id='sidebar '>
                 {isAdmin && (
                     <>
-                        <NavLink to={'/dashboard'}>
+                        <NavLink to={'/dashboard/'}>
                             <FaHome /> Admin Home
                         </NavLink>
                         <NavLink to={'/dashboard/users'}>
@@ -72,7 +77,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         </NavLink>
                     </>
                 )}
-                {!isAdmin && !isTeacher && (
+                {isUser && (
                     <>
                         <NavLink to={'/dashboard/userHome'}>
                             <FaHome /> User Home
@@ -84,14 +89,16 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                 )}
             </li>
 
-            <div className="divider"></div>
+            <div> <hr /> </div>
 
-            <NavLink to={'/'}>
-                <div className="flex items-center gap-1">
-                    <FaHome />
-                    <span>Home</span>
-                </div>
-            </NavLink>
+            <div className='menu'>
+                <NavLink to={'/'}>
+                    <div className="flex items-center gap-1">
+                        <FaHome />
+                        <span>Home</span>
+                    </div>
+                </NavLink>
+            </div>
         </ul>
     </Drawer>
 );

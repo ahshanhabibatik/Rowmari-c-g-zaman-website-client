@@ -39,10 +39,10 @@ const HomeScc = () => {
                 {sscData.slice(0, 6).map((result, index) => (
                     <div key={index} className={`mb-2 border p-2 rounded-lg ${index % 2 === 0 ? 'bg-slate-300' : 'bg-gray-300'}`} data-aos="fade-up">
                         <div className="flex items-center gap-2">
-                             
-                                <CiViewTimeline  className="mt-[3px]"/>
-                             
-                            <div>
+
+                            <CiViewTimeline className="mt-[3px]" />
+
+                            <div className="hover:link">
                                 <a href={result.link} target="_blank" rel="noopener noreferrer">
                                     {result.description}
                                 </a>

@@ -45,6 +45,7 @@ import Teacher from "../Page/TeacherPage/Teacher";
 import UploadResult from "../AdminPanel/UploadResult";
 import ForgetPassword from "../Login/ForgetPassword";
 import SScConner from "../Page/SscConner/SScConner";
+import PrivateRoute from "./PrivateRoute";
 
 
 
@@ -100,7 +101,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/result",
-                element: <SeenResult></SeenResult>,
+                element: <PrivateRoute><SeenResult></SeenResult></PrivateRoute>,
             },
             {
                 path: "/show",
@@ -220,6 +221,12 @@ const router = createBrowserRouter([
                 path: "addResult",
                 element: <AddResult></AddResult>
             },
+            {
+                path: "SeeResult",
+                element: <ShowResult></ShowResult>
+            },
+
+            // userdashbord
             {
                 path: "SeeResult",
                 element: <ShowResult></ShowResult>
