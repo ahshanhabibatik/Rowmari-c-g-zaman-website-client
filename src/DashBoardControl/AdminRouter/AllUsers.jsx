@@ -22,6 +22,7 @@ const AllUsers = () => {
                 <select id="role" class="swal2-input">
                     <option value="admin">Admin</option>
                     <option value="teacher">teacher</option>
+                    <option value="student">student</option>
                 </select>
             `,
             showCancelButton: true,

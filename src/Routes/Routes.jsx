@@ -46,6 +46,7 @@ import UploadResult from "../AdminPanel/UploadResult";
 import ForgetPassword from "../Login/ForgetPassword";
 import SScConner from "../Page/SscConner/SScConner";
 import PrivateRoute from "./PrivateRoute";
+import StudentHome from "../StudentDashboard/StudentHome";
 
 
 
@@ -148,7 +149,7 @@ const router = createBrowserRouter([
         children: [
             // Admin dashboard
             {
-                path: '',
+                path: 'home',
                 element: <AdminHome></AdminHome>
             },
             {
@@ -226,10 +227,10 @@ const router = createBrowserRouter([
                 element: <ShowResult></ShowResult>
             },
 
-            // userdashbord
+            // userdashbord  
             {
-                path: "SeeResult",
-                element: <ShowResult></ShowResult>
+                path: "userHome",
+                element: <StudentHome></StudentHome>
             },
 
         ]

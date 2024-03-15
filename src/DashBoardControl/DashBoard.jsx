@@ -11,7 +11,7 @@ import useUser from '../PanelControl/useUser';
 const DashBoard = () => {
     const [isAdmin, isAdminLoading] = useAdmin();
     const [isTeacher, isTeacherLoading] = UseTeacher();
-    const [isUser, isUserLoading] = useUser();
+    const [isStudent, isStudentLoading] = useUser();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -19,11 +19,11 @@ const DashBoard = () => {
         setDrawerOpen((prevState) => !prevState);
     };
 
-    if (isAdminLoading || isTeacherLoading || isUserLoading) {
+    if (isAdminLoading || isTeacherLoading || isStudentLoading) {
         return <span className="loading flex mx-auto justify-center loading-ring w-40"></span>;
     }
 
-    if (!isAdmin && !isTeacher && isUser) {
+    if (!isAdmin && !isTeacher && isStudent) {
         return (
             <div className=''>
                 <p className='text-center mb-3 text-red-500'>Data is loaded But no role detected.</p>
@@ -39,7 +39,7 @@ const DashBoard = () => {
     return (
         <div className="flex ">
 
-            <CustomDrawer isAdmin={isAdmin} isTeacher={isTeacher} isUser={isUser} isOpen={drawerOpen} onClose={toggleDrawer} />
+            <CustomDrawer isAdmin={isAdmin} isTeacher={isTeacher} isStudent={isStudent} isOpen={drawerOpen} onClose={toggleDrawer} />
 
             <div className="flex-1 ">
                 <div>

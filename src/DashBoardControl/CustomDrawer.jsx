@@ -6,9 +6,10 @@ import 'react-modern-drawer/dist/index.css';
 import "./custom.css"
 
 
-const CustomDrawer = ({ isAdmin, isTeacher, isUser, isOpen, onClose }) => (
+const CustomDrawer = ({ isAdmin, isTeacher, isStudent, isOpen, onClose }) => (
 
-    <Drawer
+
+    < Drawer
         open={isOpen}
         onClose={onClose}
         direction='left'
@@ -24,7 +25,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isUser, isOpen, onClose }) => (
             <li id='sidebar '>
                 {isAdmin && (
                     <>
-                        <NavLink to={'/dashboard/'}>
+                        <NavLink to={'/dashboard/home'}>
                             <FaHome /> Admin Home
                         </NavLink>
                         <NavLink to={'/dashboard/users'}>
@@ -77,14 +78,12 @@ const CustomDrawer = ({ isAdmin, isTeacher, isUser, isOpen, onClose }) => (
                         </NavLink>
                     </>
                 )}
-                {isUser && (
+                {!isAdmin && !isTeacher && (
                     <>
                         <NavLink to={'/dashboard/userHome'}>
                             <FaHome /> User Home
                         </NavLink>
-                        <NavLink to={'/dashboard/cart'}>
-                            <FaShoppingCart /> My Result
-                        </NavLink>
+                      
                     </>
                 )}
             </li>
@@ -100,7 +99,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isUser, isOpen, onClose }) => (
                 </NavLink>
             </div>
         </ul>
-    </Drawer>
+    </Drawer >
 );
 
 export default CustomDrawer;
