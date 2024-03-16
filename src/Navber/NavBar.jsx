@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './navber.css';
 import { NavLink } from 'react-router-dom';
 import useAdmin from '../PanelControl/UseAdmin';
 import UseTeacher from '../PanelControl/UseTeacher';
+import { AuthContext } from '../Provider/AuthProvider';
+import useAxiosSecure from '../Hook/AxiosSecure';
+
 
 const NavBar = () => {
     const [isResponsive, setIsResponsive] = useState(false);
@@ -12,6 +15,26 @@ const NavBar = () => {
     const [isDropdownOpen4, setIsDropdownOpen4] = useState(false);
     const [isAdmin] = useAdmin();
     const [isTeacher] = UseTeacher();
+    const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
+    const [isStudent, setIsStudent] = useState(false);
+
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            try {
+                const response = await axiosSecure.get(`/users/role/${user.email}`);
+                const { student } = response.data;
+                setIsStudent(student);
+            } catch (error) {
+                console.error('Error fetching user role:', error);
+            }
+        };
+
+        if (user) {
+            fetchUserRole();
+        }
+    }, [user, axiosSecure]);
+
 
     const toggleResponsive = () => {
         setIsResponsive(!isResponsive);
@@ -100,6 +123,22 @@ const NavBar = () => {
                     {(isAdmin || isTeacher) && (
                         <NavLink to={'/dashBoard'} >DashBoard</NavLink>
                     )}
+
+
+                    {(isStudent) && (
+                        <div className="dropdown1">
+                            <button className="dropbtn md:block hidden" onClick={toggleDropdown3}>Student DashBoard
+                                <i className="fa fa-caret-down"></i>
+                            </button>
+                            <div className={isDropdownOpen3 ? "dropdown-content show" : "dropdown-content"}>
+
+                                <NavLink to={'/result'} >Result</NavLink>
+                                <NavLink to={'/admit'}>Admit Card</NavLink>
+                            </div>
+                        </div>
+                    )}
+
+
 
                     <a href="#" className="icon" onClick={toggleResponsive}>&#9776;</a>
                 </div>

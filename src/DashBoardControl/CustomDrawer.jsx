@@ -6,7 +6,7 @@ import 'react-modern-drawer/dist/index.css';
 import "./custom.css"
 
 
-const CustomDrawer = ({ isAdmin, isTeacher, isStudent, isOpen, onClose }) => (
+const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
 
 
     < Drawer
@@ -78,14 +78,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isStudent, isOpen, onClose }) => (
                         </NavLink>
                     </>
                 )}
-                {!isAdmin && !isTeacher && (
-                    <>
-                        <NavLink to={'/dashboard/userHome'}>
-                            <FaHome /> User Home
-                        </NavLink>
-                      
-                    </>
-                )}
+
             </li>
 
             <div> <hr /> </div>

@@ -1,17 +1,14 @@
-
 import { Link, Outlet } from 'react-router-dom';
 import useAdmin from '../PanelControl/UseAdmin';
 import CustomDrawer from './CustomDrawer';
 import { useState } from 'react';
 import { FaAlignJustify } from "react-icons/fa";
 import UseTeacher from '../PanelControl/UseTeacher';
-import useUser from '../PanelControl/useUser';
 
 
 const DashBoard = () => {
     const [isAdmin, isAdminLoading] = useAdmin();
     const [isTeacher, isTeacherLoading] = UseTeacher();
-    const [isStudent, isStudentLoading] = useUser();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
 
@@ -19,11 +16,11 @@ const DashBoard = () => {
         setDrawerOpen((prevState) => !prevState);
     };
 
-    if (isAdminLoading || isTeacherLoading || isStudentLoading) {
+    if (isAdminLoading || isTeacherLoading) {
         return <span className="loading flex mx-auto justify-center loading-ring w-40"></span>;
     }
 
-    if (!isAdmin && !isTeacher && isStudent) {
+    if (!isAdmin && !isTeacher) {
         return (
             <div className=''>
                 <p className='text-center mb-3 text-red-500'>Data is loaded But no role detected.</p>
@@ -39,7 +36,7 @@ const DashBoard = () => {
     return (
         <div className="flex ">
 
-            <CustomDrawer isAdmin={isAdmin} isTeacher={isTeacher} isStudent={isStudent} isOpen={drawerOpen} onClose={toggleDrawer} />
+            <CustomDrawer isAdmin={isAdmin} isTeacher={isTeacher} isOpen={drawerOpen} onClose={toggleDrawer} />
 
             <div className="flex-1 ">
                 <div>
