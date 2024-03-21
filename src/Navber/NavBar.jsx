@@ -9,6 +9,7 @@ import useAxiosSecure from '../Hook/AxiosSecure';
 
 const NavBar = () => {
     const [isResponsive, setIsResponsive] = useState(false);
+    const [isFixed, setIsFixed] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
     const [isDropdownOpen3, setIsDropdownOpen3] = useState(false);
@@ -35,6 +36,23 @@ const NavBar = () => {
         }
     }, [user, axiosSecure]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            if (scrollY > 0) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
 
     const toggleResponsive = () => {
         setIsResponsive(!isResponsive);
@@ -54,9 +72,9 @@ const NavBar = () => {
     }
 
     return (
-        <div className='roboto-regular '>
+        <div className={`roboto-regular w-full ${isFixed ? 'fixed top-0 left-0' : ''}`}>
             <hr className='' />
-            <div className={isResponsive ? "topnav responsive" : "topnav"}
+            <div className={isResponsive ? "topnav responsive " : "topnav "}
                 id="myTopnav">
 
                 <div className='md:flex md:mx-auto md:justify-center'>
@@ -70,7 +88,7 @@ const NavBar = () => {
                         <button className="dropbtn md:block hidden" onClick={toggleDropdown}>About Us
                             <i className="fa fa-caret-down"></i>
                         </button>
-                        <div className={isDropdownOpen ? "dropdown-content show" : "dropdown-content"}>
+                        <div className={isDropdownOpen ? "dropdown-content lg:show" : "dropdown-content"}>
 
                             <NavLink to={'/vision'}>Vision</NavLink>
                             <NavLink to={'/mission'}>Mission</NavLink>
@@ -85,7 +103,7 @@ const NavBar = () => {
                         <div className={isDropdownOpen2 ? "dropdown-content show" : "dropdown-content"}>
 
                             <NavLink to={'/allStu'}>Former Headteachers</NavLink>
-                            <NavLink to={'/total'}>Head Teacher</NavLink>
+                            <NavLink to={'/headTeacher'}>Head Teacher</NavLink>
                             <NavLink to={'/allTeacher'}>All Teacher</NavLink>
 
                         </div>
@@ -104,7 +122,7 @@ const NavBar = () => {
                         </div>
                     </div>
                     {/* result navbar */}
-                    <NavLink to={'/result'} >Result</NavLink>
+                    <NavLink to={'/publicResult'} >Result</NavLink>
 
                     {/* Administration */}
                     <div className="dropdown1">

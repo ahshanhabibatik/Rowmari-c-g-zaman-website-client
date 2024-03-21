@@ -1,0 +1,13 @@
+.bg {
+    background: linear-gradient(90deg, rgba(113, 115, 94, 1) 0%, rgba(191, 203, 123, 0.8633578431372549) 54%, rgba(46, 55, 33, 0.33674719887955185) 99%);
+}
+
+.border2 {
+    border: 1px solid #d4d4d4;
+    padding: 7px;
+    text-align: center;
+}
+
+.weight {
+    width: 50px;
+}

@@ -120,7 +120,21 @@ const ShowAdminResult = () => {
             text: "Results have already been published.",
             icon: "warning"
         });
+
     };
+
+    useEffect(() => {
+        const checkResultsPublished = async () => {
+            try {
+                const response = await axiosSecure.get("/results/publish");
+                setResultsPublished(response.data.length > 0);
+            } catch (error) {
+                console.error("Error checking published results:", error);
+            }
+        };
+
+        checkResultsPublished();
+    }, [axiosSecure]);
 
     return (
         <div>
@@ -299,7 +313,7 @@ const ShowAdminResult = () => {
 
             <div className="flex gap-3 mt-6 mx-auto justify-end">
                 <button
-                    className={`btn btn-primary fixed bottom-5 right-5 ${resultsPublished ? "cursor-not-allowed" : ""
+                    className={`btn btn-outline fixed bottom-5 right-5 ${resultsPublished ? "cursor-not-allowed" : ""
                         }`}
                     onClick={resultsPublished ? handleDoubleClickPublishButton : handlePublishResults}
                     disabled={resultsPublished}

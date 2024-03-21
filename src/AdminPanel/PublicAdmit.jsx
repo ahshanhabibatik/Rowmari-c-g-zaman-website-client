@@ -8,9 +8,7 @@ const PublicAdmit = () => {
     const axiosSecure = useAxiosSecure();
     const [admitData, setAdmitData] = useState([]);
 
-
     useEffect(() => {
-
         axiosSecure.get('/Admit/publish')
             .then(response => {
                 setAdmitData(response.data);
@@ -41,7 +39,6 @@ const PublicAdmit = () => {
                     <tr className='border text-center'>
                         <th className='border text-center'>ID</th>
                         <th className='border text-center'>Class</th>
-
                         <th className='border text-center'>Shift</th>
                         <th className='border text-center'>Subject</th>
                         <th className='border text-center'>Date</th>
@@ -50,9 +47,9 @@ const PublicAdmit = () => {
                         <th className='border text-center'>Exam Time</th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     {admitData.map((item, index) => (
-                        <tr key={index}  >
+                        <tr key={index}>
                             <td className='border text-center'>{index + 1}</td>
                             <td className='border text-center'>{item.class}</td>
                             <td className='border text-center'>{item.shift}</td>
@@ -66,9 +63,17 @@ const PublicAdmit = () => {
                 </tbody>
             </table>
 
-            <button onClick={handleUnPublishResults} className='btn btn-secondary flex justify-center mx-auto mt-9'>UnPublic</button>
+            <button
+                onClick={handleUnPublishResults}
+                className='btn btn-outline flex justify-center mx-auto mt-9'
+                disabled={admitData.length === 0}
+            >
+                UnPublic Admit
+            </button>
 
-            <button className='text-center flex   mx-auto mt-6 border-b-2 border-blue-400'><Link to={"/dashboard/seeAdmit"}>Go Back To Admit Card Page</Link></button>
+            <button className='text-center flex mx-auto mt-6 mb-8 border-b-2 border-blue-400'>
+                <Link to={"/dashboard/seeAdmit"}>Go Back To Admit Card Page</Link>
+            </button>
         </div>
     );
 };

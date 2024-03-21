@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hook/UseAxiosPublic";
 import './home.css'
 import HomeScc from "../SscConner/HomeScc";
-
+import Header from "../../Shared/Header/Header";
+ 
 
 const Home = () => {
 
@@ -34,11 +35,12 @@ const Home = () => {
         // Cleanup function not needed here, as this effect doesn't set up any ongoing subscriptions
     }, [axiosPublic]);
 
-
-
     return (
         <div>
-            <div className="relative z-10">
+            <div>
+                <Header></Header>
+            </div>
+            <div className="relative z-10 ">
                 <NavBar />
             </div>
             <div>

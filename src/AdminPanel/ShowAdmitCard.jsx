@@ -9,6 +9,24 @@ import { useQuery } from '@tanstack/react-query';
 const ShowAdmitCard = () => {
     const axiosSecure = useAxiosSecure();
     const [AdmitPublic, setAdmitPublished] = useState(false);
+    const [admitData, setAdmitData] = useState(false);
+
+
+    useEffect((refetch) => {
+        const checkAdmitPublished = async () => {
+            try {
+                const response = await axiosSecure.get("/Admit/publish");
+                setAdmitData(response.data.length > 0);
+                refetch();
+            } catch (error) {
+                console.error("Error checking published results:", error);
+            }
+        };
+
+        checkAdmitPublished();
+    }, [axiosSecure]);
+
+
 
 
     const { data: admitCardsClass6 = [], refetch: refetchClass6 } = useQuery({
@@ -64,7 +82,7 @@ const ShowAdmitCard = () => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/admitPost/${admitCardId}`)
                     .then(() => {
-                        refetch(); // Refresh the admit card data
+                        refetch();
                         Swal.fire({
                             title: "Deleted!",
                             text: "The admit card has been deleted.",
@@ -78,9 +96,7 @@ const ShowAdmitCard = () => {
         });
     };
 
-
-
-    const handlePublishAdmitCards = () => {
+    const handlePublishAdmitCards = (refetch) => {
         axiosSecure.post('/Admit/publish')
             .then(res => {
                 console.log(res.data);
@@ -90,6 +106,7 @@ const ShowAdmitCard = () => {
                     text: "Admit cards have been published.",
                     icon: "success"
                 });
+                refetch();
             })
             .catch((error) => {
                 console.error("Error publishing admit cards:", error);
@@ -98,14 +115,12 @@ const ShowAdmitCard = () => {
 
     const handleDoubleClickPublishButton = () => {
         Swal.fire({
-            title: "Admit Already Published!",
-            text: "Admit have already been published.",
+            title: "Results Already Published!",
+            text: "Results have already been published.",
             icon: "warning"
         });
+
     };
-
-
-
 
 
     const renderTable = (admitCards, refetch) => (
@@ -150,9 +165,7 @@ const ShowAdmitCard = () => {
 
     return (
         <div className='mb-6'>
-            <div className='flex justify-center'>
-                <button className='btn btn-primary mt-4'><Link to={"/dashBoard/publicAdmit"}>See Public Admit</Link></button>
-            </div>
+
             <h1 className="font-bold text-center">Admit Cards</h1>
             <div className="mt-4">
                 <h2 className="font-bold text-center">Class 6</h2>
@@ -175,14 +188,18 @@ const ShowAdmitCard = () => {
                 {renderTable(admitCardsClass10, refetchClass10)}
             </div>
 
-            <div className="flex gap-3 mt-6 mx-auto justify-center">
+            <div className="flex gap-3 mt-6 justify-center items-center">
                 <button
-                    className={`btn btn-primary  bottom-5 right-5 ${AdmitPublic ? "cursor-not-allowed" : ""}`}
-                    onClick={AdmitPublic ? handleDoubleClickPublishButton : handlePublishAdmitCards}
-                    disabled={AdmitPublic}
+                    className={`btn btn-outline  bottom-5 right-5 ${admitData ? "cursor-not-allowed" : ""}`}
+                    onClick={admitData ? handleDoubleClickPublishButton : handlePublishAdmitCards}
+                    disabled={admitData}
                 >
                     Publish Admit Cards
                 </button>
+
+                <div className='flex justify-center cursor-pointer '>
+                    <button className='btn btn-outline'><Link to={"/dashBoard/publicAdmit"}>See Public Admit</Link></button>
+                </div>
             </div>
         </div>
     );

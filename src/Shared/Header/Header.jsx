@@ -1,9 +1,9 @@
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import imgUser from '../../assets/imgGalary/user.png';
 import logo from '../../assets/cgzaman logo (1).png';
 import { AuthContext } from '../../Provider/AuthProvider';
-import { useContext, useState } from 'react';
-import './Header.css'
+import './Header.css';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -18,7 +18,7 @@ const Header = () => {
     const handleSignOut = () => {
         logOut()
             .then()
-            .catch()
+            .catch();
     };
 
     const toggleNameVisibility = () => {
@@ -26,8 +26,8 @@ const Header = () => {
     };
 
     return (
-        <div className='bg-[#330033] px-8 py-6  lg:flex justify-between items-center '>
-            <div className='  lg:flex hidden'>
+        <div className={`header bg-[#330033] px-8 py-6 lg:flex justify-between items-center ${isNameVisible ? 'show-name' : ''}`}>
+            <div className='lg:flex hidden'>
                 <div>
                     <img src={logo} className='h-24 pl-6' alt="" />
                 </div>
@@ -51,17 +51,13 @@ const Header = () => {
                     </div>
                     {isNameVisible && (
                         <p className="text-white w-10">{user?.displayName}</p>
-
-
                     )}
                 </label>
                 <div>
                     {user ? (
-                        <Link to={"/login"}>
-                            <button onClick={handleSignOut} className="text-xl rounded-md text-red-800 bg-white font-bold px-2 py-2  ">
-                                Log Out
-                            </button>
-                        </Link>
+                        <button onClick={handleSignOut} className="text-xl rounded-md text-red-800 bg-white font-bold px-2 py-2  ">
+                            Log Out
+                        </button>
                     ) : (
                         <Link to={'/login'}>
                             <button className="text-xl rounded-md text-red-800 px-2 py-2 bg-white font-bold ">
@@ -71,7 +67,6 @@ const Header = () => {
                     )}
                 </div>
             </div>
-
         </div>
     );
 };

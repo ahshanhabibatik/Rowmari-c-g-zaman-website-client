@@ -63,7 +63,7 @@ const PublishedResult = () => {
                 </tbody>
             </table>
             <div className='flex justify-center mt-6'>
-                <button className='btn btn-primary' onClick={handleUnPublishResults}>UnPublic</button>
+                <button className='btn btn-primary' onClick={handleUnPublishResults} disabled={publishedResults.length === 0}>UnPublic</button>
             </div>
         </div>
     );

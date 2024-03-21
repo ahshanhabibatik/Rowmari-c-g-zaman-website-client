@@ -47,6 +47,8 @@ import ForgetPassword from "../Login/ForgetPassword";
 import SScConner from "../Page/SscConner/SScConner";
 import PrivateRoute from "./PrivateRoute";
 import StudentHome from "../StudentDashboard/StudentHome";
+import PublicResult from "../Page/StudentPanel/PublicResult";
+import HeadTeacher from "../PublicTeacher/HeadTeacher";
 
 
 
@@ -109,6 +111,10 @@ const router = createBrowserRouter([
                 element: <PageResult></PageResult>,
             },
             {
+                path: "/publicResult",
+                element: <PublicResult></PublicResult>,
+            },
+            {
                 path: "/stuAdmit",
                 element: <ExamRoutine></ExamRoutine>,
             },
@@ -139,6 +145,10 @@ const router = createBrowserRouter([
             {
                 path: "/ssc",
                 element: <SScConner></SScConner>,
+            },
+            {
+                path: "/headTeacher",
+                element: <HeadTeacher></HeadTeacher>,
             },
 
         ]
