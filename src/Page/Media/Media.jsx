@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal'; // Import the Modal component
 import '../Media/Media.css';
-import image from '../../assets/banner-bg.png';
 import img1 from '../../assets/imgGalary/img.jpg';
 import img2 from '../../assets/imgGalary/img2.jpg';
 import img3 from '../../assets/imgGalary/img3.jpg';
@@ -27,9 +26,6 @@ const Media = () => {
     return (
         <div className='mb-64'>
             <div>
-                <div className='absolute'>
-                    <img src={image} alt="" />
-                </div>
                 <div className='relative top-10'>
                     <div>
                         <h1 className="text-center text-3xl font-bold">Institute Media</h1>

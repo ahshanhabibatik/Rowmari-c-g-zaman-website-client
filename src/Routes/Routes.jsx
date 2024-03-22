@@ -49,6 +49,9 @@ import PrivateRoute from "./PrivateRoute";
 import StudentHome from "../StudentDashboard/StudentHome";
 import PublicResult from "../Page/StudentPanel/PublicResult";
 import HeadTeacher from "../PublicTeacher/HeadTeacher";
+import OldHeadTeacher from "../PublicTeacher/OldHeadTeacher";
+import TeacherRegister from "../PublicTeacher/TeacherRegister";
+import ViewTeacherInfo from "../PublicTeacher/ViewTeacherInfo";
 
 
 
@@ -150,6 +153,10 @@ const router = createBrowserRouter([
                 path: "/headTeacher",
                 element: <HeadTeacher></HeadTeacher>,
             },
+            {
+                path: "/oldHeadTeacher",
+                element: <OldHeadTeacher></OldHeadTeacher>,
+            },
 
         ]
     },
@@ -236,12 +243,15 @@ const router = createBrowserRouter([
                 path: "SeeResult",
                 element: <ShowResult></ShowResult>
             },
-
-            // userdashbord  
             {
-                path: "userHome",
-                element: <StudentHome></StudentHome>
+                path: "teacherRegister",
+                element: <TeacherRegister></TeacherRegister>
             },
+            {
+                path: "registerInfo",
+                element: <ViewTeacherInfo></ViewTeacherInfo>
+            },
+
 
         ]
     }

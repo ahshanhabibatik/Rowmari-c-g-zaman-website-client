@@ -20,13 +20,13 @@ const HeadTeacher = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="lg:h-[100vh] bg">
+        <div className="lg:h-[100vh] bg-[#8d158d]">
             <NavBar />
             <div className="mt-6">
-                <h1 className=" text-center py-4 md:text-4xl text-xl font-bold uppercase">Head Teacher Information</h1>
+                <h1 className=" text-center py-4 md:text-4xl text-xl font-bold uppercase text-white">Head Teacher Information</h1>
             </div>
-            <div className="md:border lg:w-[1100px] md:w-[720px] w-full lg:h-[422px] mx-auto px-2 py-2 mt-6 rounded-lg">
-                <div className="md:flex gap-2 mx-auto justify-center border lg:w-[1080px] md:w-[700px] px-2 py-2 rounded-lg bg-gray-100">
+            <div className="md:border lg:w-[1100px] md:w-[720px] w-full lg:h-[446px] mx-auto px-2 py-2 mt-6 rounded-lg">
+                <div className="md:flex gap-2 mx-auto justify-center border lg:w-[1080px] md:w-[700px] w-full px-2 py-2 rounded-lg bg-gray-100">
                     {/* First Table */}
                     <div>
                         <table className="lg:w-[490px] md:w-[280px] w-full">
@@ -34,8 +34,8 @@ const HeadTeacher = () => {
                                 {headTeacher.map((head, index) => (
                                     <tr key={index}>
                                         <tr className="bg-[#E9E9E9]">
-                                            <th className="border2 lg:w-72  ">Teacher ID</th>
-                                            <td className="border2 lg:w-72 ">{head['Teacher ID']}</td>
+                                            <th className="border2 lg:w-72 w-96 ">Teacher ID</th>
+                                            <td className="border2 lg:w-72 w-96 ">{head['Teacher ID']}</td>
                                         </tr>
                                         <tr className="">
                                             <th className="border2 px-9">Designation</th>
@@ -90,32 +90,32 @@ const HeadTeacher = () => {
 
                                         <tr>
                                             <th className="border border-[#d4d4d4] bg-[#E9E9E9] text-center ">Picture</th>
-                                            <td className="border border-[#d4d4d4] bg-[#E9E9E9]"><img className="h-[104px] w-28 flex mx-auto justify-center " src={head.Picture} alt="" /></td>
+                                            <td className="border border-[#d4d4d4] bg-[#E9E9E9]"><img className="md:h-[104px] md:w-28 h-20 flex mx-auto justify-center " src={head.Picture} alt="" /></td>
                                         </tr>
                                         <tr>
-                                            <th className="border2">Qualification</th>
-                                            <td className="border2">{head.Qualification}</td>
+                                            <th className="border2 lg:w-72 w-96">Qualification</th>
+                                            <td className="border2 border">{head.Qualification}</td>
                                         </tr>
                                         <tr className="bg-[#E9E9E9]">
-                                            <th className="border2">Teaching Subject</th>
+                                            <th className="md:border2 border">Teaching Subject</th>
                                             <td className="border2">{head['Teaching Subject']}</td>
                                         </tr>
                                         <tr>
-                                            <th className="border2">Email</th>
-                                            <td className="border2">{head.Email}</td>
+                                            <th className="border2 ">Email</th>
+                                            <td className="border2 ">{head.Email}</td>
                                         </tr>
 
                                         <tr className="bg-[#E9E9E9]">
-                                            <th className="border2">First Join Date</th>
+                                            <th className="border2 ">First Join Date</th>
                                             <td className="border2">{head['First Join Date']}</td>
                                         </tr>
                                         <tr>
-                                            <th className="border2">Present Address</th>
-                                            <td className="border2">{head['Present Address']}</td>
+                                            <th className="border2 ">Present Address</th>
+                                            <td className="border2 ">{head['Present Address']}</td>
                                         </tr>
                                         <tr className="bg-[#E9E9E9]">
-                                            <th className="border2">Permanent Address</th>
-                                            <td className="border2">{head['Permanent Address']}</td>
+                                            <th className="border2 ">Permanent Address</th>
+                                            <td className="border2 ">{head['Permanent Address']}</td>
                                         </tr>
                                     </tr>
                                 ))}

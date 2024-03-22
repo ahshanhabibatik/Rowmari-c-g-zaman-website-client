@@ -102,7 +102,7 @@ const NavBar = () => {
                         </button>
                         <div className={isDropdownOpen2 ? "dropdown-content show" : "dropdown-content"}>
 
-                            <NavLink to={'/allStu'}>Former Headteachers</NavLink>
+                            <NavLink to={'/oldHeadTeacher'}>Former Headteachers</NavLink>
                             <NavLink to={'/headTeacher'}>Head Teacher</NavLink>
                             <NavLink to={'/allTeacher'}>All Teacher</NavLink>
 

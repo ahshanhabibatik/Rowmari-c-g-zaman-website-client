@@ -1,6 +1,6 @@
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import banner from '../../assets/banner-bg.png';
+
 import slider1 from '../../assets/slider/1637769815_sld1.jpg';
 import slider2 from '../../assets/slider/slider-2.jpg';
 import slider3 from '../../assets/slider/slider-3.jpg';
@@ -43,15 +43,15 @@ const Banner = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="relative z-[1]">
-            <img className="h-[800px]" src={banner} alt="" />
+        <div className="">
 
-            <div className='absolute top-5 px-8'>
+
+            <div className='my-2'>
                 <div className="flex items-center text-center p-1">
                     <div>
-                        <h1 className='text-xl text-white bg-red-800 p-2 uppercase w-40'>latest News</h1>
+                        <h1 className='md:text-xl text-white bg-red-800 p-2 uppercase md:w-40 w-32'>latest News</h1>
                     </div>
-                    <div className="bg-white text-white p-2 font-face">
+                    <div className="bg-white text-white p-2 font-face border">
                         <Marquee pauseOnHover={true}>
                             <Link to={'/news'} className='text-black'>
                                 {latestNews.head}
@@ -59,25 +59,25 @@ const Banner = () => {
                         </Marquee>
                     </div>
                     <div className='flex'>
-                        <h1 className='text-xl w-36 border-r text-white bg-red-800 p-2'>{currentTime.toLocaleTimeString()}</h1>
+                        <h1 className='text-xl w-36 border-r md:block hidden text-white bg-red-800 p-2'>{currentTime.toLocaleTimeString()}</h1>
                         <h1 className='text-xl text-white bg-red-800 p-2'>{currentTime.toLocaleDateString()}</h1>
                     </div>
                 </div>
             </div>
 
-            <div className="absolute top-24 px-8">
+            <div className="">
                 <Carousel autoPlay interval={5000} infiniteLoop showThumbs={false}>
                     <div>
-                        <img className='rounded-lg h-[500px]' src={slider1} alt="Slide 1" />
+                        <img className='rounded-lg md:h-[500px]' src={slider1} alt="Slide 1" />
                     </div>
                     <div>
-                        <img className='rounded-lg h-[500px]' src={slider2} alt="Slide 2" />
+                        <img className='rounded-lg md:h-[500px]' src={slider2} alt="Slide 2" />
                     </div>
                     <div>
-                        <img className='rounded-lg h-[500px]' src={slider3} alt="Slide 3" />
+                        <img className='rounded-lg md:h-[500px]' src={slider3} alt="Slide 3" />
                     </div>
                     <div>
-                        <img className='rounded-lg h-[500px]' src={slider4} alt="Slide 4" />
+                        <img className='rounded-lg md:h-[500px]' src={slider4} alt="Slide 4" />
                     </div>
                 </Carousel>
             </div>

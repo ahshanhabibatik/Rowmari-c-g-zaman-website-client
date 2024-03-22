@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import useAxiosPublic from "../../Hook/UseAxiosPublic";
 import './home.css'
 import HomeScc from "../SscConner/HomeScc";
-import Header from "../../Shared/Header/Header";
+ 
  
 
 const Home = () => {
@@ -37,9 +37,6 @@ const Home = () => {
 
     return (
         <div>
-            <div>
-                <Header></Header>
-            </div>
             <div className="relative z-10 ">
                 <NavBar />
             </div>
@@ -48,7 +45,7 @@ const Home = () => {
             </div>
             <div>
                 <div className="flex justify-evenly">
-                    <div className="border px-3 mt-3 py-2 bg w-full text-center mx-8 rounded-md">
+                    <div className=" px-3 mt-3 py-2 bg-white w-full text-center mx-8 rounded-md">
                         <h1 className="text-4xl  font-bold text-center animate-charcter merriweather-regular ">
                             Welcome to Rowmari C.G Zaman Govt. High School
                         </h1>

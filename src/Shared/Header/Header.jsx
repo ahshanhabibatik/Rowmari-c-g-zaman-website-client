@@ -26,7 +26,7 @@ const Header = () => {
     };
 
     return (
-        <div className={`header bg-[#330033] px-8 py-6 lg:flex justify-between items-center ${isNameVisible ? 'show-name' : ''}`}>
+        <div className={`header bg-[#2C134D] px-8 py-6 lg:flex justify-between items-center ${isNameVisible ? 'show-name' : ''}`}>
             <div className='lg:flex hidden'>
                 <div>
                     <img src={logo} className='h-24 pl-6' alt="" />

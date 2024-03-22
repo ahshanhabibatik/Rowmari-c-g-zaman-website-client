@@ -8,7 +8,6 @@ import "./custom.css"
 
 const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
 
-
     < Drawer
         open={isOpen}
         onClose={onClose}
@@ -67,6 +66,13 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                         <NavLink to={'/dashboard/teacherHome'}>
                             <FaHome /> Teacher Home
                         </NavLink>
+                        <NavLink to={'/dashboard/teacherRegister'}>
+                            <FaHome /> Teacher Register
+                        </NavLink>
+                        <NavLink to={'/dashboard/registerInfo'}>
+                            <FaHome /> View Profile
+                        </NavLink>
+
                         <NavLink to={'/dashboard/addResult'}>
                             <FaShoppingCart /> Add Result
                         </NavLink>
@@ -74,7 +80,7 @@ const CustomDrawer = ({ isAdmin, isTeacher, isOpen, onClose }) => (
                             <FaShoppingCart /> Result
                         </NavLink>
                         <NavLink to={'/dashboard/surveyData'}>
-                            Passing Student
+                            <FaShoppingCart /> Passing Student
                         </NavLink>
                     </>
                 )}
