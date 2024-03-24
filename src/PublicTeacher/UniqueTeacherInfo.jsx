@@ -1,43 +1,24 @@
-import { useContext, useEffect, useState } from "react";
-import useAxiosSecure from "../Hook/AxiosSecure";
-import { AuthContext } from "../Provider/AuthProvider";
-import { Link } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
+import NavBar from "../Navber/NavBar";
 
-const ViewTeacherInfo = () => {
-    const axiosSecure = useAxiosSecure();
-    const [teacher, setTeacher] = useState(null);
-    const { user } = useContext(AuthContext);
 
-    useEffect(() => {
-        const fetchTeacher = async () => {
-            try {
-                const res = await axiosSecure.get('/generalTeacher');
-                const matchingTeacher = res.data.find(t => t.Email === user?.email);
-                if (matchingTeacher) {
-                    setTeacher(matchingTeacher);
-                }
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        if (user && user.email) {
-            fetchTeacher();
-        }
-    }, [axiosSecure, user]);
 
+const UniqueTeacherInfo = () => {
+    const teacher = useLoaderData();
     return (
-        <div className="my-6">
-            {teacher ? (
+        <div>
+            <NavBar></NavBar>
+            <div className="my-6 overflow-x-auto">
                 <div>
                     <div>
                         <h1 className="text-2xl text-center my-4 uppercase font-bold">Teacher Information</h1>
 
-                        <table className="border border-gray-400 mx-auto lg:w-[880px] md:w-[600px] w-full">
+                        <table className="border border-gray-400 mx-auto lg:w-[880px] md:w-[600px] w-[320px]">
                             <tbody>
                                 <tr className="bg-slate-200">
                                     <td></td>
                                     <td colSpan={4} className=" p-2 lg:px-40 md:px-20 px-16">
-                                        <img src={teacher.Picture} alt="Teacher" className="w-40 h-40 rounded-full" />
+                                        <img src={teacher?.Picture} alt="Teacher" className="md:w-40 w-10 h-10 md:h-40 rounded-full" />
                                     </td>
                                 </tr>
                                 <tr className="bg-[#E9E9E9]">
@@ -100,17 +81,11 @@ const ViewTeacherInfo = () => {
                         </table>
 
                     </div>
-                    <button className="btn btn-outline my-6 flex mx-auto">
-                        <Link to={`updateInfo/${teacher?._id}`}>
-                            Update Information
-                        </Link>
-                    </button>
+
                 </div>
-            ) : (
-                <p>No teacher information found for the logged-in user.</p>
-            )}
+            </div>
         </div>
     );
 };
 
-export default ViewTeacherInfo;
+export default UniqueTeacherInfo;

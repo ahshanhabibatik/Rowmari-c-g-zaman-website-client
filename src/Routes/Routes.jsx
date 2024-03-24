@@ -41,17 +41,20 @@ import ExamAdmitCard from "../Page/StuAdmitCard/ExamAdmitCard";
 import Vision from "../Vision/Vision";
 import Mision from "../Vision/Mision";
 import Experience from "../Page/Experience/Experience";
-import Teacher from "../Page/TeacherPage/Teacher";
+
 import UploadResult from "../AdminPanel/UploadResult";
 import ForgetPassword from "../Login/ForgetPassword";
 import SScConner from "../Page/SscConner/SScConner";
 import PrivateRoute from "./PrivateRoute";
-import StudentHome from "../StudentDashboard/StudentHome";
+
 import PublicResult from "../Page/StudentPanel/PublicResult";
 import HeadTeacher from "../PublicTeacher/HeadTeacher";
 import OldHeadTeacher from "../PublicTeacher/OldHeadTeacher";
 import TeacherRegister from "../PublicTeacher/TeacherRegister";
 import ViewTeacherInfo from "../PublicTeacher/ViewTeacherInfo";
+import UpdateTeacherInformation from "../PublicTeacher/UpdateTeacherInformation";
+import HomePageTeacher from "../PublicTeacher/HomePageTeacher";
+import UniqueTeacherInfo from "../PublicTeacher/UniqueTeacherInfo";
 
 
 
@@ -139,7 +142,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/allTeacher",
-                element: <Teacher></Teacher>,
+                element: <HomePageTeacher></HomePageTeacher>,
             },
             {
                 path: "/forget",
@@ -156,6 +159,11 @@ const router = createBrowserRouter([
             {
                 path: "/oldHeadTeacher",
                 element: <OldHeadTeacher></OldHeadTeacher>,
+            },
+            {
+                path: "/individualTeacher/:id",
+                element: <UniqueTeacherInfo></UniqueTeacherInfo>,
+                loader: ({ params }) => fetch(`http://localhost:5001/homePageTeacher/${params.id}`)
             },
 
         ]
@@ -250,6 +258,12 @@ const router = createBrowserRouter([
             {
                 path: "registerInfo",
                 element: <ViewTeacherInfo></ViewTeacherInfo>
+            },
+            {
+                path: "registerInfo/updateInfo/:id",
+                element: <UpdateTeacherInformation></UpdateTeacherInformation>,
+                loader: ({ params }) => fetch(`http://localhost:5001/generalTeacher/${params.id}`)
+
             },
 
 

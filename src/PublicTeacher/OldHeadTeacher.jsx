@@ -11,7 +11,8 @@ const OldHeadTeacher = () => {
         const fetchOldHeadTeacher = async () => {
             try {
                 const res = await axiosPublic.get('/oldHeadTeacher');
-                setOldHeadTeacher(res.data);
+                const sortedData = res.data.sort((a, b) => a.SL - b.SL);  
+                setOldHeadTeacher(sortedData);
             } catch (error) {
                 console.log(error);
             }
@@ -20,11 +21,11 @@ const OldHeadTeacher = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="lg:h-[120vh] bg pb-6">
+        <div className="lg:h-[120vh] bg-[#3a1f5e] pb-6">
             <NavBar />
 
             <div>
-                <h1 className="md:text-3xl text-xl font-bold uppercase text-center mt-3">Former Head Teacher</h1>
+                <h1 className="md:text-3xl text-xl font-bold uppercase text-center mt-3 text-white">Former Head Teacher</h1>
             </div>
             <div className="border lg:w-[1000px] mx-auto px-2 py-2 mt-6 rounded-lg">
                 <div className="border rounded-lg px-2 py-2 bg-gray-100">

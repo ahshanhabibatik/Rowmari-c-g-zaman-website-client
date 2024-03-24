@@ -20,7 +20,7 @@ const HeadTeacher = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="lg:h-[100vh] bg-[#8d158d]">
+        <div className="lg:h-[100vh] bg-[#3a1f5e]">
             <NavBar />
             <div className="mt-6">
                 <h1 className=" text-center py-4 md:text-4xl text-xl font-bold uppercase text-white">Head Teacher Information</h1>
