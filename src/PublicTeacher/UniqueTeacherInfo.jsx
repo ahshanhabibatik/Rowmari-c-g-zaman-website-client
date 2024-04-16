@@ -8,7 +8,7 @@ const UniqueTeacherInfo = () => {
     return (
         <div>
             <NavBar></NavBar>
-            <div className="my-6 overflow-x-auto">
+            <div className="my-6 overflow-x-auto ">
                 <div>
                     <div>
                         <h1 className="text-2xl text-center my-4 uppercase font-bold">Teacher Information</h1>

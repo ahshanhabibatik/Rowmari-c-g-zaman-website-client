@@ -49,7 +49,7 @@ const Banner = () => {
             <div className='my-2'>
                 <div className="flex items-center text-center p-1">
                     <div>
-                        <h1 className='md:text-xl text-white bg-red-800 p-2 uppercase md:w-40 w-32'>latest News</h1>
+                        <h1 className='md:text-xl text-white bg-red-800 p-2 uppercase md:w-40 w-20'>News</h1>
                     </div>
                     <div className="bg-white text-white p-2 font-face border">
                         <Marquee pauseOnHover={true}>
@@ -60,7 +60,7 @@ const Banner = () => {
                     </div>
                     <div className='flex'>
                         <h1 className='text-xl w-36 border-r md:block hidden text-white bg-red-800 p-2'>{currentTime.toLocaleTimeString()}</h1>
-                        <h1 className='text-xl text-white bg-red-800 p-2'>{currentTime.toLocaleDateString()}</h1>
+                        <h1 className='text-xl text-white bg-red-800 p-2 md:block hidden '>{currentTime.toLocaleDateString()}</h1>
                     </div>
                 </div>
             </div>
@@ -68,16 +68,16 @@ const Banner = () => {
             <div className="">
                 <Carousel autoPlay interval={5000} infiniteLoop showThumbs={false}>
                     <div>
-                        <img className='rounded-lg md:h-[500px]' src={slider1} alt="Slide 1" />
+                        <img className='rounded-lg md:h-[500px] h-72' src={slider1} alt="Slide 1" />
                     </div>
                     <div>
-                        <img className='rounded-lg md:h-[500px]' src={slider2} alt="Slide 2" />
+                        <img className='rounded-lg md:h-[500px] h-72' src={slider2} alt="Slide 2" />
                     </div>
                     <div>
-                        <img className='rounded-lg md:h-[500px]' src={slider3} alt="Slide 3" />
+                        <img className='rounded-lg md:h-[500px] h-72' src={slider3} alt="Slide 3" />
                     </div>
                     <div>
-                        <img className='rounded-lg md:h-[500px]' src={slider4} alt="Slide 4" />
+                        <img className='rounded-lg md:h-[500px] h-72' src={slider4} alt="Slide 4" />
                     </div>
                 </Carousel>
             </div>

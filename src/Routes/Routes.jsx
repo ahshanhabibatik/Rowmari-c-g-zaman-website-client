@@ -55,6 +55,10 @@ import ViewTeacherInfo from "../PublicTeacher/ViewTeacherInfo";
 import UpdateTeacherInformation from "../PublicTeacher/UpdateTeacherInformation";
 import HomePageTeacher from "../PublicTeacher/HomePageTeacher";
 import UniqueTeacherInfo from "../PublicTeacher/UniqueTeacherInfo";
+import Contract from "../Page/Contract";
+import AddEvent from "../AdminPanel/AddEvent";
+import ShowEventAdmin from "../AdminPanel/ShowEventAdmin";
+import ShowEventStudent from "../Page/Event/ShowEventStudent";
 
 
 
@@ -165,6 +169,14 @@ const router = createBrowserRouter([
                 element: <UniqueTeacherInfo></UniqueTeacherInfo>,
                 loader: ({ params }) => fetch(`http://localhost:5001/homePageTeacher/${params.id}`)
             },
+            {
+                path: "/contract",
+                element: <Contract></Contract>,
+            },
+            {
+                path: "/studentEvent",
+                element: <ShowEventStudent></ShowEventStudent>,
+            },
 
         ]
     },
@@ -235,6 +247,14 @@ const router = createBrowserRouter([
             {
                 path: 'ssc',
                 element: <UploadResult></UploadResult>
+            },
+            {
+                path: 'addEvent',
+                element: <AddEvent></AddEvent>
+            },
+            {
+                path: 'showEventAdmin',
+                element: <ShowEventAdmin></ShowEventAdmin>
             },
 
 

@@ -131,8 +131,8 @@ const NavBar = () => {
                         </button>
                         <div className={isDropdownOpen4 ? "dropdown-content show" : "dropdown-content"}>
                             <NavLink to={'/ssc'}>Ssc Result</NavLink>
-                            <NavLink to={'/total'}>Head Teacher</NavLink>
-                            <NavLink to={'/allTeacher'}>All </NavLink>
+                            <NavLink to={'/studentEvent'}>Event Management</NavLink>
+                            <NavLink to={'/contract'}>Contract</NavLink>
 
                         </div>
                     </div>

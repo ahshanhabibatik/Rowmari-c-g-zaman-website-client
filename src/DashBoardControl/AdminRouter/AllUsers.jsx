@@ -89,16 +89,16 @@ const AllUsers = () => {
     };
 
     return (
-        <div>
-            <div className="flex justify-evenly my-8">
+        <div className='py-8'>
+            <div className="flex justify-evenly ">
                 <h1 className="animate-charcter font-bold">Total User: {users.length}</h1>
             </div>
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
+                <table className="table table-zebra mx-auto lg:w-[900px] md:w-[600px] w-[300px]">
                     {/* head */}
                     <thead>
-                        <tr className='border bg-cyan-100 text-black'>
+                        <tr className='border text-black'>
                             <th className='border text-center font-bold'>ID</th>
                             <th className='border text-center font-bold'>Name</th>
                             <th className='border text-center font-bold'>Email</th>

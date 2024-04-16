@@ -44,7 +44,7 @@ const Message = () => {
                         <h1 className='text-center border rounded-t-lg text-xl font-bold bg-zinc-300 text-[#797b7c] py-3'>Impotent Links</h1>
                         <div>
                             {links.map((link) => (
-                                <div key={link._id} className='border w-[370px] mx-auto mt-[6px] px-2 py-1 bg-gray-200 rounded-lg'>
+                                <div key={link._id} className='border lg:w-[370px] mx-auto mt-[6px] px-2 py-1 bg-gray-200 rounded-lg'>
                                     <div className='flex items-center gap-3'>
                                         <IoLinkSharp />
                                         <a href={link.link} target="_blank" rel="noopener noreferrer">{link.name}</a>

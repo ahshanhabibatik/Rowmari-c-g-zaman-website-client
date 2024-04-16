@@ -8,7 +8,7 @@ import Header from "../Shared/Header/Header";
 
 const Root = () => {
     return (
-        <div className=" bg-white   mx-auto font-">
+        <div className="mx-auto font-poppins ">
             <Header></Header>
             <Outlet></Outlet>
             <Footer></Footer>

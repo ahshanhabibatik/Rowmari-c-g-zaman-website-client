@@ -10,3 +10,7 @@
     font-weight: normal;
     font-style: normal;
 }
+
+.gradient-background {
+    background: linear-gradient(to right, rgba(21, 21, 21, 0.00), rgba(21, 21, 21, 0.00));
+}

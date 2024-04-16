@@ -20,12 +20,12 @@ const HeadTeacher = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="lg:h-[100vh] bg-[#3a1f5e]">
+        <div className="lg:h-[100vh] bg-[#3a1f5e] ">
             <NavBar />
             <div className="mt-6">
                 <h1 className=" text-center py-4 md:text-4xl text-xl font-bold uppercase text-white">Head Teacher Information</h1>
             </div>
-            <div className="md:border lg:w-[1100px] md:w-[720px] w-full lg:h-[446px] mx-auto px-2 py-2 mt-6 rounded-lg">
+            <div className="md:border lg:w-[1100px] md:w-[720px] w-full lg:h-[440px] mx-auto px-2 py-2 mt-6 rounded-lg overflow-x-auto">
                 <div className="md:flex gap-2 mx-auto justify-center border lg:w-[1080px] md:w-[700px] w-full px-2 py-2 rounded-lg bg-gray-100">
                     {/* First Table */}
                     <div>
@@ -89,12 +89,12 @@ const HeadTeacher = () => {
                                     <tr key={index}>
 
                                         <tr>
-                                            <th className="border border-[#d4d4d4] bg-[#E9E9E9] text-center ">Picture</th>
-                                            <td className="border border-[#d4d4d4] bg-[#E9E9E9]"><img className="md:h-[104px] md:w-28 h-20 flex mx-auto justify-center " src={head.Picture} alt="" /></td>
+                                            <th className="md:border border-[#d4d4d4] md:bg-[#E9E9E9] text-center ">Picture</th>
+                                            <td className="md:border border-[#d4d4d4] md:bg-[#E9E9E9]"><img className="md:h-[104px] md:w-28 h-20 flex mx-auto justify-center " src={head.Picture} alt="" /></td>
                                         </tr>
                                         <tr>
-                                            <th className="border2 lg:w-72 w-96">Qualification</th>
-                                            <td className="border2 border">{head.Qualification}</td>
+                                            <th className=" lg:w-72 w-96">Qualification</th>
+                                            <td className="text-center">{head.Qualification}</td>
                                         </tr>
                                         <tr className="bg-[#E9E9E9]">
                                             <th className="md:border2 border">Teaching Subject</th>
